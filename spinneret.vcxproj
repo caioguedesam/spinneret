@@ -149,14 +149,23 @@
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\main_destroy.cpp" />
     <ClCompile Include="src\main_init.cpp" />
+    <ClCompile Include="src\renderer\shader.cpp" />
+    <ClCompile Include="src\renderer\vertex_buffer.cpp" />
     <ClCompile Include="src\window.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="include\gl_includes.h" />
     <ClInclude Include="include\main_destroy.h" />
     <ClInclude Include="include\main_init.h" />
+    <ClInclude Include="include\renderer\shader.h" />
+    <ClInclude Include="include\renderer\vertex_buffer.h" />
     <ClInclude Include="include\stb_image.h" />
     <ClInclude Include="include\typedefs.h" />
     <ClInclude Include="include\window.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="resources\shaders\base_frag.frag" />
+    <None Include="resources\shaders\base_vert.vert" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
