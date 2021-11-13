@@ -7,6 +7,7 @@
 #include "main_init.h"
 #include "main_destroy.h"
 #include "renderer/vertex_array.h"
+#include "renderer/index_buffer.h"
 #include "renderer/shader.h"
 
 #define TITLE "Spinneret"
@@ -15,9 +16,15 @@ int width = 800;
 int height = 600;
 
 float vertices[] = {
-	 -0.5f, -0.5f, 0.0f,
-	 0.5f, -0.5f, 0.0f,
-	 0.0f,  0.5f, 0.0f
+	 0.5f,  0.5f, 0.0f,  // top right
+	 0.5f, -0.5f, 0.0f,  // bottom right
+	-0.5f, -0.5f, 0.0f,  // bottom left
+	-0.5f,  0.5f, 0.0f   // top left 
+};
+
+uint indices[] = {
+	0, 1, 3,
+	1, 2, 3
 };
 
 void setupRender() {
@@ -28,13 +35,13 @@ void render(Window& window) {
 	glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-	glDrawArrays(GL_TRIANGLES, 0, 3);
+	//glDrawArrays(GL_TRIANGLES, 0, 3);
+	glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
 
 	window.swapBuffers();
 }
 
 int main(int argc, char* argv[]) {
-	std::cout << sizeof(vertices) << std::endl;
 	initializeGlfw();
 
 	Window window;
@@ -51,6 +58,7 @@ int main(int argc, char* argv[]) {
 
 	VertexArray va;
 	VertexBuffer vb(vertices, sizeof(vertices));
+	IndexBuffer ib(indices, sizeof(indices));
 	VertexBufferLayout layout;
 
 	layout.Push<float>(3);
