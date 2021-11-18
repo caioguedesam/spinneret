@@ -9,6 +9,7 @@
 #include "renderer/renderer.h"
 #include "renderer/renderable/sprite_renderable.h"
 #include "resource_loader/resource_loader.h"
+#include "renderer/texture_2d.h"
 
 #define TITLE "Spinneret"
 
@@ -36,6 +37,7 @@ int main(int argc, char* argv[]) {
 	ResourceLoader::init();
 	Renderer renderer;
 	SpriteRenderable spriteRenderable("base");
+	Texture2D tex = ResourceLoader::getTexture2D("container");
 	renderer.addRenderable(spriteRenderable);
 
 	while (!window.shouldClose()) {

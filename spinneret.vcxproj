@@ -154,6 +154,8 @@
     <ClCompile Include="src\renderer\renderable\sprite_renderable.cpp" />
     <ClCompile Include="src\renderer\renderer.cpp" />
     <ClCompile Include="src\renderer\shader.cpp" />
+    <ClCompile Include="src\renderer\stbi_implementation.cpp" />
+    <ClCompile Include="src\renderer\texture_2d.cpp" />
     <ClCompile Include="src\renderer\vertex_array.cpp" />
     <ClCompile Include="src\renderer\vertex_buffer.cpp" />
     <ClCompile Include="src\resource_loader\resource_loader.cpp" />
@@ -169,6 +171,7 @@
     <ClInclude Include="include\renderer\renderable\sprite_renderable.h" />
     <ClInclude Include="include\renderer\renderer.h" />
     <ClInclude Include="include\renderer\shader.h" />
+    <ClInclude Include="include\renderer\texture_2d.h" />
     <ClInclude Include="include\renderer\vertex_array.h" />
     <ClInclude Include="include\renderer\vertex_buffer.h" />
     <ClInclude Include="include\renderer\vertex_buffer_layout.h" />

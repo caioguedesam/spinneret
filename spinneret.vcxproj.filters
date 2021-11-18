@@ -54,6 +54,12 @@
     <ClCompile Include="src\resource_loader\resource_loader.cpp">
       <Filter>Arquivos de Origem</Filter>
     </ClCompile>
+    <ClCompile Include="src\renderer\texture_2d.cpp">
+      <Filter>Arquivos de Origem</Filter>
+    </ClCompile>
+    <ClCompile Include="src\renderer\stbi_implementation.cpp">
+      <Filter>Arquivos de Origem</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\window.h">
@@ -104,9 +110,13 @@
     <ClInclude Include="include\resource_loader\resource_loader.h">
       <Filter>Arquivos de Cabeçalho</Filter>
     </ClInclude>
+    <ClInclude Include="include\renderer\texture_2d.h">
+      <Filter>Arquivos de Cabeçalho</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="resources\shaders\glsl\base_vert.vert" />
     <None Include="resources\shaders\glsl\base_frag.frag" />
+    <None Include="resources\shaders\refs\base.glslref" />
   </ItemGroup>
 </Project>

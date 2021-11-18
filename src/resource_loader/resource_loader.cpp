@@ -1,7 +1,8 @@
 #include "resource_loader/resource_loader.h"
 
 template<>
-Shader& ResourceCollection<Shader>::load(const std::string& resourcePath, const std::string& resourceKey) {
+Shader& ResourceCollection<Shader>::load(const std::string& resourcePath, const std::string& resourceKey) 
+{
 	if (_loadedResources.count(resourceKey)) {
 		return get(resourceKey);
 	}
@@ -16,10 +17,26 @@ Shader& ResourceCollection<Shader>::load(const std::string& resourcePath, const 
 	return get(resourceKey);
 }
 
+template<>
+Texture2D& ResourceCollection<Texture2D>::load(const std::string& resourcePath, const std::string& resourceKey) 
+{
+	if (_loadedResources.count(resourceKey)) {
+		return get(resourceKey);
+	}
+
+	std::string tex2dPath = "resources/textures/" + resourcePath;
+	Texture2D texture(tex2dPath);
+	// TODO: load texture options
+	_loadedResources.insert({ resourceKey, texture });
+	return get(resourceKey);
+}
+
 ResourceCollection<Shader> ResourceLoader::_shaders;
+ResourceCollection<Texture2D> ResourceLoader::_textures;
 
 void ResourceLoader::init()
 {
+	loadInitialTextures();
 	loadInitialShaders();
 }
 
@@ -29,12 +46,28 @@ void ResourceLoader::loadInitialShaders()
 	loadShader("base.glslref", "base");
 }
 
-void ResourceLoader::loadShader(const std::string& refPath, const std::string& shaderKey)
+void ResourceLoader::loadInitialTextures()
 {
-	_shaders.load(refPath, shaderKey);
+	// TODO: make some sort of file to read dynamically ref paths to load instead of manual
+	loadTexture2D("container.jpg", "container");
+}
+
+Shader& ResourceLoader::loadShader(const std::string& refPath, const std::string& shaderKey)
+{
+	return _shaders.load(refPath, shaderKey);
 }
 
 Shader& ResourceLoader::getShader(const std::string& shaderKey)
 {
 	return _shaders.get(shaderKey);
+}
+
+Texture2D& ResourceLoader::loadTexture2D(const std::string& texPath, const std::string& textureKey)
+{
+	return _textures.load(texPath, textureKey);
+}
+
+Texture2D& ResourceLoader::getTexture2D(const std::string& textureKey)
+{
+	return _textures.get(textureKey);
 }
