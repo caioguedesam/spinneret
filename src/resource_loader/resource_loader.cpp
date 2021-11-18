@@ -15,3 +15,26 @@ Shader ResourceCollection<Shader>::load(const std::string& resourcePath, const s
 	_loadedResources.insert({ resourceKey, shader });
 	return shader;
 }
+
+ResourceCollection<Shader> ResourceLoader::_shaders;
+
+void ResourceLoader::init()
+{
+	loadInitialShaders();
+}
+
+void ResourceLoader::loadInitialShaders()
+{
+	// TODO: make some sort of file to read dynamically ref paths to load instead of manual
+	loadShader("base.glslref", "base");
+}
+
+void ResourceLoader::loadShader(const std::string& refPath, const std::string& shaderKey)
+{
+	_shaders.load(refPath, shaderKey);
+}
+
+Shader ResourceLoader::getShader(const std::string& shaderKey)
+{
+	return _shaders.get(shaderKey);
+}

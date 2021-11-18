@@ -33,9 +33,8 @@ int main(int argc, char* argv[]) {
 		return -1;
 	}
 
-	ResourceCollection<Shader> shaders;
-	shaders.load("base.glslref", "base");
-	Shader baseShader = shaders.get("base");
+	ResourceLoader::init();
+	Shader baseShader = ResourceLoader::getShader("base");
 
 	Renderer renderer;
 	SpriteRenderable spriteRenderable(baseShader);

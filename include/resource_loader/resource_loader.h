@@ -31,3 +31,16 @@ Shader ResourceCollection<Shader>::load(const std::string& resourcePath, const s
 // Get declarations
 template<class T>
 inline T ResourceCollection<T>::get(const std::string& resourceKey) { return _loadedResources[resourceKey]; }
+
+class ResourceLoader
+{
+private:
+	static ResourceCollection<Shader> _shaders;
+public:
+
+	static void init();
+	static void loadInitialShaders();
+
+	static void loadShader(const std::string& refPath, const std::string& shaderKey);
+	static Shader getShader(const std::string& shaderKey);
+};
