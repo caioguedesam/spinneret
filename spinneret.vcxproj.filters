@@ -98,6 +98,9 @@
     <ClInclude Include="include\renderer\renderable\sprite_renderable.h">
       <Filter>Arquivos de Cabeçalho</Filter>
     </ClInclude>
+    <ClInclude Include="include\mem_debug.h">
+      <Filter>Arquivos de Cabeçalho</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="resources\shaders\base_vert.vert" />

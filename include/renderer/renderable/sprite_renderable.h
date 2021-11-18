@@ -6,7 +6,7 @@
 #include "typedefs.h"
 #include <memory>
 
-typedef struct SpriteRenderableVertexData
+struct SpriteRenderableVertexData
 {
 	static float _vertices[];
 	static uint _indices[];
@@ -17,7 +17,7 @@ typedef struct SpriteRenderableVertexData
 
 	SpriteRenderableVertexData();
 
-} SpriteRenderableVertexData;
+};
 
 class SpriteRenderable : public Renderable
 {
