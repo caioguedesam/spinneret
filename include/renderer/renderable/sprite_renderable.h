@@ -4,19 +4,25 @@
 
 #include "renderer/renderable/renderable.h"
 #include "typedefs.h"
+#include <memory>
+
+typedef struct SpriteRenderableVertexData
+{
+	static float _vertices[];
+	static uint _indices[];
+
+	VertexArray vertexArray;
+	VertexBuffer vertexBuffer;
+	IndexBuffer indexBuffer;
+
+	SpriteRenderableVertexData();
+
+} SpriteRenderableVertexData;
 
 class SpriteRenderable : public Renderable
 {
 private:
-	static float _vertices[];
-	static uint _indices[];
-
-	static bool _initialized;
-
-	// TODO: figure out way to use only one VertexArray (and buffers) for all SpriteRenderables
-	VertexArray _vertexArray;
-	VertexBuffer _vertexBuffer;
-	IndexBuffer _indexBuffer;
+	static SpriteRenderableVertexData* _vertexData;
 	
 	// TODO: add support for setting mvp matrix (with caching maybe)
 	// TOOD: add texture support
@@ -25,6 +31,8 @@ private:
 public:
 
 	SpriteRenderable(Shader& shader);
+
+	static void init(SpriteRenderableVertexData* vertexData);
 
 	void draw() override;
 };

@@ -2,9 +2,10 @@
 #include "gl_includes.h"
 #include "typedefs.h"
 
-void Renderer::init() const
+Renderer::Renderer()
 {
 	glEnable(GL_DEPTH_TEST);
+	SpriteRenderable::init(&_spriteRenderableVertexData);
 }
 
 void Renderer::addRenderable(Renderable& renderable)

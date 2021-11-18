@@ -3,12 +3,16 @@
 #include <set>
 
 #include "renderer/renderable/renderable.h"
+#include "renderer/renderable/sprite_renderable.h"
 
 class Renderer {
 private:
 	std::set<Renderable*> _renderables;
+
+	SpriteRenderableVertexData _spriteRenderableVertexData;
 public:
-	void init() const;
+	
+	Renderer();
 
 	void addRenderable(Renderable& renderable);
 	void removeRenderable(Renderable& renderable);
