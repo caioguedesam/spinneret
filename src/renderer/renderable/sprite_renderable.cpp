@@ -1,4 +1,5 @@
 #include "renderer/renderable/sprite_renderable.h"
+#include "resource_loader/resource_loader.h"
 
 // TODO: vertices are in normalized device coordinates. Must update base shader
 // to use MVP matrix and change these to object space.
@@ -21,8 +22,9 @@ SpriteRenderableVertexData::SpriteRenderableVertexData()
 
 SpriteRenderableVertexData* SpriteRenderable::_vertexData;
 
-SpriteRenderable::SpriteRenderable(Shader& shader)
-	: _shader(shader) {}
+SpriteRenderable::SpriteRenderable(const std::string& shaderName)
+	: _shader(ResourceLoader::getShader(shaderName)) {}
+
 
 void SpriteRenderable::init(SpriteRenderableVertexData* vertexData)
 {

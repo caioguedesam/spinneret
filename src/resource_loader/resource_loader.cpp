@@ -1,7 +1,7 @@
 #include "resource_loader/resource_loader.h"
 
 template<>
-Shader ResourceCollection<Shader>::load(const std::string& resourcePath, const std::string& resourceKey) {
+Shader& ResourceCollection<Shader>::load(const std::string& resourcePath, const std::string& resourceKey) {
 	if (_loadedResources.count(resourceKey)) {
 		return get(resourceKey);
 	}
@@ -13,7 +13,7 @@ Shader ResourceCollection<Shader>::load(const std::string& resourcePath, const s
 
 	Shader shader(vertPath, fragPath);
 	_loadedResources.insert({ resourceKey, shader });
-	return shader;
+	return get(resourceKey);
 }
 
 ResourceCollection<Shader> ResourceLoader::_shaders;
@@ -34,7 +34,7 @@ void ResourceLoader::loadShader(const std::string& refPath, const std::string& s
 	_shaders.load(refPath, shaderKey);
 }
 
-Shader ResourceLoader::getShader(const std::string& shaderKey)
+Shader& ResourceLoader::getShader(const std::string& shaderKey)
 {
 	return _shaders.get(shaderKey);
 }

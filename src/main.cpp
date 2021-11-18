@@ -34,10 +34,8 @@ int main(int argc, char* argv[]) {
 	}
 
 	ResourceLoader::init();
-	Shader baseShader = ResourceLoader::getShader("base");
-
 	Renderer renderer;
-	SpriteRenderable spriteRenderable(baseShader);
+	SpriteRenderable spriteRenderable("base");
 	renderer.addRenderable(spriteRenderable);
 
 	while (!window.shouldClose()) {

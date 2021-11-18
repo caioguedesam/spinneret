@@ -4,7 +4,7 @@
 
 #include "renderer/renderable/renderable.h"
 #include "typedefs.h"
-#include <memory>
+#include <string>
 
 struct SpriteRenderableVertexData
 {
@@ -30,7 +30,8 @@ private:
 
 public:
 
-	SpriteRenderable(Shader& shader);
+	//SpriteRenderable(Shader& shader);
+	SpriteRenderable(const std::string& shaderName);
 
 	static void init(SpriteRenderableVertexData* vertexData);
 
