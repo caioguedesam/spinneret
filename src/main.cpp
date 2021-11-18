@@ -8,6 +8,7 @@
 #include "main_destroy.h"
 #include "renderer/renderer.h"
 #include "renderer/renderable/sprite_renderable.h"
+#include "resource_loader/resource_loader.h"
 
 #define TITLE "Spinneret"
 
@@ -32,7 +33,9 @@ int main(int argc, char* argv[]) {
 		return -1;
 	}
 
-	Shader baseShader("resources\\shaders\\base_vert.vert", "resources\\shaders\\base_frag.frag");
+	ResourceCollection<Shader> shaders;
+	shaders.load("base.glslref", "base");
+	Shader baseShader = shaders.get("base");
 
 	Renderer renderer;
 	SpriteRenderable spriteRenderable(baseShader);

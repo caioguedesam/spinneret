@@ -3,6 +3,8 @@
 #include <sstream>
 #include <iostream>
 
+Shader::Shader() : shaderID(0) {}
+
 Shader::Shader(const std::string& vertexFilePath, const std::string& fragmentFilePath)
 {
 	std::string vertexSrc, fragmentSrc;
@@ -12,6 +14,32 @@ Shader::Shader(const std::string& vertexFilePath, const std::string& fragmentFil
 	compileShader(GL_VERTEX_SHADER, vertexSrc.c_str(), vertex);
 	compileShader(GL_FRAGMENT_SHADER, fragmentSrc.c_str(), fragment);
 	linkProgram(vertex, fragment, shaderID);
+}
+
+void Shader::parseShaderReferenceFile(const std::string& refPath, std::string& outVertFileName, std::string& outFragFileName)
+{
+	std::ifstream refFile;
+	refFile.exceptions(std::ifstream::failbit | std::ifstream::badbit);
+	try {
+		refFile.open(refPath.c_str());
+		std::string line;
+		while (getline(refFile, line)) {
+			if (line.find("#endref") != std::string::npos) {
+				break;
+			}
+			else if (line.find("#vert") != std::string::npos) {
+				outVertFileName = line.substr(6, line.size() - 6);
+			}
+			else if (line.find("#frag") != std::string::npos) {
+				outFragFileName = line.substr(6, line.size() - 6);
+			}
+		}
+		refFile.close();
+	}
+	catch (std::ifstream::failure e) {
+		std::cout << "ERROR::SHADER_REFERENCE::" << e.what() << std::endl;
+		std::cout << "Failure while parsing reference file at " << refPath << std::endl;
+	}
 }
 
 void Shader::parseShaderFile(const std::string& filePath, std::string& output)

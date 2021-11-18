@@ -51,6 +51,9 @@
     <ClCompile Include="src\renderer\renderable\sprite_renderable.cpp">
       <Filter>Arquivos de Origem</Filter>
     </ClCompile>
+    <ClCompile Include="src\resource_loader\resource_loader.cpp">
+      <Filter>Arquivos de Origem</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\window.h">
@@ -98,12 +101,12 @@
     <ClInclude Include="include\renderer\renderable\sprite_renderable.h">
       <Filter>Arquivos de Cabeçalho</Filter>
     </ClInclude>
-    <ClInclude Include="include\mem_debug.h">
+    <ClInclude Include="include\resource_loader\resource_loader.h">
       <Filter>Arquivos de Cabeçalho</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="resources\shaders\base_vert.vert" />
-    <None Include="resources\shaders\base_frag.frag" />
+    <None Include="resources\shaders\glsl\base_vert.vert" />
+    <None Include="resources\shaders\glsl\base_frag.frag" />
   </ItemGroup>
 </Project>
