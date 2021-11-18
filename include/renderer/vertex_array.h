@@ -10,8 +10,8 @@ public:
 	VertexArray();
 	~VertexArray();
 
-	void Bind();
-	void Unbind();
+	void bind() const;
+	void unbind() const;
 
-	void AddBuffer(const VertexBuffer& vertexBuffer, const VertexBufferLayout& layout);
+	void addBuffer(const VertexBuffer& vertexBuffer, const VertexBufferLayout& layout);
 };

@@ -70,7 +70,7 @@ void Shader::linkProgram(const uint& vertex, const uint& fragment, uint& output)
 	glDeleteShader(fragment);
 }
 
-void Shader::use()
+void Shader::use() const
 {
 	glUseProgram(shaderID);
 }

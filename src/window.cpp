@@ -33,6 +33,7 @@ void Window::swapBuffers()
 
 void Window::pollInput()
 {
+	// using GLFW input
 	glfwPollEvents();
 }
 

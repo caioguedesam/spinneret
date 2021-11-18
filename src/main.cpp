@@ -6,15 +6,15 @@
 #include "window.h"
 #include "main_init.h"
 #include "main_destroy.h"
-#include "renderer/vertex_array.h"
-#include "renderer/index_buffer.h"
-#include "renderer/shader.h"
+#include "renderer/renderer.h"
 
 #define TITLE "Spinneret"
 
 int width = 800;
 int height = 600;
 
+// TODO: vertices are in normalized device coordinates. Must update base shader
+// to use MVP matrix and change these to object space.
 float vertices[] = {
 	 0.5f,  0.5f, 0.0f,  // top right
 	 0.5f, -0.5f, 0.0f,  // bottom right
@@ -27,16 +27,11 @@ uint indices[] = {
 	1, 2, 3
 };
 
-void setupRender() {
-	glEnable(GL_DEPTH_TEST);
-}
+void render(Window& window, Renderer& renderer, const VertexArray& va, const IndexBuffer& ib, const Shader& shader) {
+	renderer.clear();
 
-void render(Window& window) {
-	glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
-	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-
-	//glDrawArrays(GL_TRIANGLES, 0, 3);
-	glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
+	// currently only one object being drawn
+	renderer.draw(va, ib, shader);
 
 	window.swapBuffers();
 }
@@ -52,22 +47,22 @@ int main(int argc, char* argv[]) {
 		return -1;
 	}
 
-	setupRender();
 	Shader baseShader("resources\\shaders\\base_vert.vert", "resources\\shaders\\base_frag.frag");
-	baseShader.use();
 
 	VertexArray va;
 	VertexBuffer vb(vertices, sizeof(vertices));
 	IndexBuffer ib(indices, sizeof(indices));
 	VertexBufferLayout layout;
 
-	layout.Push<float>(3);
-	va.AddBuffer(vb, layout);
-	va.Bind();
+	layout.push<float>(3);
+	va.addBuffer(vb, layout);
+
+	Renderer renderer;
+	renderer.init();
 
 	while (!window.shouldClose()) {
 		window.processInput();
-		render(window);
+		render(window, renderer, va, ib, baseShader);
 		window.pollInput();
 	}
 

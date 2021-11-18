@@ -16,5 +16,5 @@ public:
 	static void compileShader(GLenum shaderType, const char* shaderSource, uint& output);
 	static void linkProgram(const uint& vertex, const uint& fragment, uint& output);
 
-	void use();
+	void use() const;
 };
