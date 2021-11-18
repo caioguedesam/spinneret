@@ -25,7 +25,7 @@ void VertexArray::unbind() const
 void VertexArray::addBuffer(const VertexBuffer& vertexBuffer, const VertexBufferLayout& layout)
 {
 	bind();
-	vertexBuffer.Bind();
+	vertexBuffer.bind();
 	const std::vector<VertexBufferLayoutElement>& elements = layout.getElements();
 	uint offset = 0;
 	for (uint i = 0; i < elements.size(); i++) {
