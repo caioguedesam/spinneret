@@ -7,6 +7,7 @@
 #include "main_init.h"
 #include "main_destroy.h"
 #include "renderer/renderer.h"
+#include "renderer/renderable/basic_renderable.h"
 
 #define TITLE "Spinneret"
 
@@ -27,11 +28,9 @@ uint indices[] = {
 	1, 2, 3
 };
 
-void render(Window& window, Renderer& renderer, const VertexArray& va, const IndexBuffer& ib, const Shader& shader) {
+void render(Window& window, Renderer& renderer) {
 	renderer.clear();
-
-	// currently only one object being drawn
-	renderer.draw(va, ib, shader);
+	renderer.draw();
 
 	window.swapBuffers();
 }
@@ -59,10 +58,12 @@ int main(int argc, char* argv[]) {
 
 	Renderer renderer;
 	renderer.init();
+	BasicRenderable renderable(va, ib, baseShader);
+	renderer.addRenderable(renderable);
 
 	while (!window.shouldClose()) {
 		window.processInput();
-		render(window, renderer, va, ib, baseShader);
+		render(window, renderer);
 		window.pollInput();
 	}
 

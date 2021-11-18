@@ -150,6 +150,7 @@
     <ClCompile Include="src\main_destroy.cpp" />
     <ClCompile Include="src\main_init.cpp" />
     <ClCompile Include="src\renderer\index_buffer.cpp" />
+    <ClCompile Include="src\renderer\renderable\basic_renderable.cpp" />
     <ClCompile Include="src\renderer\renderer.cpp" />
     <ClCompile Include="src\renderer\shader.cpp" />
     <ClCompile Include="src\renderer\vertex_array.cpp" />
@@ -161,6 +162,8 @@
     <ClInclude Include="include\main_destroy.h" />
     <ClInclude Include="include\main_init.h" />
     <ClInclude Include="include\renderer\index_buffer.h" />
+    <ClInclude Include="include\renderer\renderable\basic_renderable.h" />
+    <ClInclude Include="include\renderer\renderable\renderable.h" />
     <ClInclude Include="include\renderer\renderer.h" />
     <ClInclude Include="include\renderer\shader.h" />
     <ClInclude Include="include\renderer\vertex_array.h" />
