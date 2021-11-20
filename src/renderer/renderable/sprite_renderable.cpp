@@ -3,7 +3,6 @@
 
 // TODO: vertices are in normalized device coordinates. Must update base shader
 // to use MVP matrix and change these to object space.
-// TODO: this data is not from a square, it's a rectangle
 float SpriteRenderableVertexData::_vertices[] = {
 	// positions	  // uvs
 	0.0f, 0.0f, 0.0f, 0.0f, 0.0f,

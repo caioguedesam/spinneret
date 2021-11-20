@@ -2,7 +2,6 @@
 
 #include <iostream>
 
-#include "gl_includes.h"
 #include "stb_image.h"
 
 Texture2D::Texture2D()
@@ -15,13 +14,12 @@ Texture2D::Texture2D(const std::string& filePath, const int& textureUnit)
 	glGenTextures(1, &_rendererID);
 	bind();
 
-	// TODO: add support for changing texture wrap/filter options
-	// TODO: add support for toggling mipmaps?
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 
+	stbi_set_flip_vertically_on_load(true);
 	byte* texData = stbi_load(filePath.c_str(), &_width, &_height, &_nChannels, 0);
 	if (texData) {
 		// TODO: add support for rgba and texture alpha channels
@@ -44,4 +42,10 @@ void Texture2D::bind() const
 void Texture2D::unbind() const
 {
 	glBindTexture(GL_TEXTURE_2D, 0);
+}
+
+void Texture2D::setParameter(GLenum param, GLenum value) const
+{
+	bind();
+	glTexParameteri(GL_TEXTURE_2D, param, value);
 }

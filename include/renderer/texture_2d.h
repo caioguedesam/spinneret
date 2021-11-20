@@ -2,6 +2,7 @@
 
 #include <string>
 
+#include "gl_includes.h"
 #include "typedefs.h"
 
 class Texture2D
@@ -17,4 +18,6 @@ public:
 
 	void bind() const;
 	void unbind() const;
+
+	void setParameter(GLenum param, GLenum value) const;
 };
