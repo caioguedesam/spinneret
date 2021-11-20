@@ -1,10 +1,11 @@
 #pragma once
 
 #include <vector>
+#include <string>
 
 #include "renderer/renderable/renderable.h"
+#include "renderer/texture_2d.h"
 #include "typedefs.h"
-#include <string>
 
 struct SpriteRenderableVertexData
 {
@@ -25,13 +26,12 @@ private:
 	static SpriteRenderableVertexData* _vertexData;
 	
 	// TODO: add support for setting mvp matrix (with caching maybe)
-	// TOOD: add texture support
 	Shader& _shader;
+	Texture2D& _texture;
 
 public:
 
-	//SpriteRenderable(Shader& shader);
-	SpriteRenderable(const std::string& shaderName);
+	SpriteRenderable(const std::string& shaderName, const std::string& textureName);
 
 	static void init(SpriteRenderableVertexData* vertexData);
 

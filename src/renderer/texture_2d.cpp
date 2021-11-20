@@ -6,13 +6,12 @@
 #include "stb_image.h"
 
 Texture2D::Texture2D()
-{
-	_rendererID = 0;
-	_width = _height = _nChannels = -1;
-}
+	: _rendererID(0), _textureUnit(0), 
+	_width(-1), _height(-1), _nChannels(-1) {}
 
-Texture2D::Texture2D(const std::string& filePath)
+Texture2D::Texture2D(const std::string& filePath, const int& textureUnit)
 {
+	_textureUnit = textureUnit;
 	glGenTextures(1, &_rendererID);
 	bind();
 
@@ -38,6 +37,7 @@ Texture2D::Texture2D(const std::string& filePath)
 
 void Texture2D::bind() const
 {
+	glActiveTexture(GL_TEXTURE0 + _textureUnit);
 	glBindTexture(GL_TEXTURE_2D, _rendererID);
 }
 

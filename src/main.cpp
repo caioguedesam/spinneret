@@ -36,8 +36,7 @@ int main(int argc, char* argv[]) {
 
 	ResourceLoader::init();
 	Renderer renderer;
-	SpriteRenderable spriteRenderable("base");
-	Texture2D tex = ResourceLoader::getTexture2D("container");
+	SpriteRenderable spriteRenderable("base", "container");
 	renderer.addRenderable(spriteRenderable);
 
 	while (!window.shouldClose()) {

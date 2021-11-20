@@ -5,15 +5,16 @@
 // to use MVP matrix and change these to object space.
 // TODO: this data is not from a square, it's a rectangle
 float SpriteRenderableVertexData::_vertices[] = {
-	0.5f,  0.5f, 0.0f,  // top right
-	 0.5f, -0.5f, 0.0f,  // bottom right
-	-0.5f, -0.5f, 0.0f,  // bottom left
-	-0.5f,  0.5f, 0.0f   // top left 
+	// positions	  // uvs
+	0.0f, 0.0f, 0.0f, 0.0f, 0.0f,
+	0.5f, 0.0f, 0.0f, 1.0f, 0.0f,
+	0.5f, 0.5f, 0.0f, 1.0f, 1.0f,
+	0.0f, 0.5f, 0.0f, 0.0f, 1.0f
 };
 
 uint SpriteRenderableVertexData::_indices[] = {
-	0, 1, 3,
-	1, 2, 3
+	0, 1, 2,
+	0, 2, 3
 };
 
 SpriteRenderableVertexData::SpriteRenderableVertexData()
@@ -22,8 +23,10 @@ SpriteRenderableVertexData::SpriteRenderableVertexData()
 
 SpriteRenderableVertexData* SpriteRenderable::_vertexData;
 
-SpriteRenderable::SpriteRenderable(const std::string& shaderName)
-	: _shader(ResourceLoader::getShader(shaderName)) {}
+SpriteRenderable::SpriteRenderable(const std::string& shaderName, const std::string& textureName)
+	: _shader(ResourceLoader::getShader(shaderName)),
+	_texture(ResourceLoader::getTexture2D(textureName))
+{}
 
 
 void SpriteRenderable::init(SpriteRenderableVertexData* vertexData)
@@ -31,12 +34,16 @@ void SpriteRenderable::init(SpriteRenderableVertexData* vertexData)
 	_vertexData = vertexData;
 
 	VertexBufferLayout layout;
+	// position (location 0)
 	layout.push<float>(3);
+	// uvs (location 1)
+	layout.push<float>(2);
 	_vertexData->vertexArray.addBuffer(_vertexData->vertexBuffer, layout);
 }
 
 void SpriteRenderable::draw()
 {
+	_texture.bind();
 	_shader.use();
 	_vertexData->vertexArray.bind();
 	_vertexData->indexBuffer.bind();
