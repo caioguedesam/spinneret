@@ -19,4 +19,8 @@ public:
 	static void linkProgram(const uint& vertex, const uint& fragment, uint& output);
 
 	void use() const;
+
+	void setInt(const std::string& name, const int& value) const;
+	void setFloat(const std::string& name, const float& value) const;
+	void setBool(const std::string& name, const bool& value) const;
 };

@@ -102,3 +102,18 @@ void Shader::use() const
 {
 	glUseProgram(shaderID);
 }
+
+void Shader::setInt(const std::string& name, const int& value) const
+{
+	glUniform1i(glGetUniformLocation(shaderID, name.c_str()), value);
+}
+
+void Shader::setFloat(const std::string& name, const float& value) const
+{
+	glUniform1i(glGetUniformLocation(shaderID, name.c_str()), value);
+}
+
+void Shader::setBool(const std::string& name, const bool& value) const
+{
+	glUniform1i(glGetUniformLocation(shaderID, name.c_str()), (int)value);
+}

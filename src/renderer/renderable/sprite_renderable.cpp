@@ -46,11 +46,15 @@ void SpriteRenderable::setTexture(const std::string& textureName, const uint& te
 
 void SpriteRenderable::draw()
 {
+	int i = 0;
+	const std::string texName = "tex_";
 	for (auto const& entry : _textures) {
 		int texUnit = entry.first;
 		Texture2D& texture = entry.second;
 		texture.activate(texUnit);
 		texture.bind();
+		_shader.setInt(texName + std::to_string(i), texUnit);
+		i++;
 	}
 	_shader.use();
 	_vertexData->vertexArray.bind();
