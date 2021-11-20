@@ -1,6 +1,6 @@
 #pragma once
 
-#include <vector>
+#include <map>
 #include <string>
 
 #include "renderer/renderable/renderable.h"
@@ -27,13 +27,14 @@ private:
 	
 	// TODO: add support for setting mvp matrix (with caching maybe)
 	Shader& _shader;
-	Texture2D& _texture;
+	std::map<uint, Texture2D&> _textures;
 
 public:
 
-	SpriteRenderable(const std::string& shaderName, const std::string& textureName);
+	SpriteRenderable(const std::string& shaderName);
 
 	static void init(SpriteRenderableVertexData* vertexData);
 
+	void setTexture(const std::string& textureName, const uint& textureUnit);
 	void draw() override;
 };

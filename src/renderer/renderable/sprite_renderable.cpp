@@ -22,9 +22,8 @@ SpriteRenderableVertexData::SpriteRenderableVertexData()
 
 SpriteRenderableVertexData* SpriteRenderable::_vertexData;
 
-SpriteRenderable::SpriteRenderable(const std::string& shaderName, const std::string& textureName)
-	: _shader(ResourceLoader::getShader(shaderName)),
-	_texture(ResourceLoader::getTexture2D(textureName))
+SpriteRenderable::SpriteRenderable(const std::string& shaderName)
+	: _shader(ResourceLoader::getShader(shaderName))
 {}
 
 
@@ -40,9 +39,19 @@ void SpriteRenderable::init(SpriteRenderableVertexData* vertexData)
 	_vertexData->vertexArray.addBuffer(_vertexData->vertexBuffer, layout);
 }
 
+void SpriteRenderable::setTexture(const std::string& textureName, const uint& textureUnit)
+{
+	_textures.insert(std::pair<uint, Texture2D&>(textureUnit, ResourceLoader::getTexture2D(textureName)));
+}
+
 void SpriteRenderable::draw()
 {
-	_texture.bind();
+	for (auto const& entry : _textures) {
+		int texUnit = entry.first;
+		Texture2D& texture = entry.second;
+		texture.activate(texUnit);
+		texture.bind();
+	}
 	_shader.use();
 	_vertexData->vertexArray.bind();
 	_vertexData->indexBuffer.bind();

@@ -36,7 +36,10 @@ int main(int argc, char* argv[]) {
 
 	ResourceLoader::init();
 	Renderer renderer;
-	SpriteRenderable spriteRenderable("base", "container");
+	SpriteRenderable spriteRenderable("base");
+	spriteRenderable.setTexture("container", 0);
+	spriteRenderable.setTexture("awesome", 1);
+	// TODO: set texture uniforms on spriteRenderable draw loop
 	renderer.addRenderable(spriteRenderable);
 
 	while (!window.shouldClose()) {

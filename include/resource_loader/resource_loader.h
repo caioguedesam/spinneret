@@ -33,7 +33,11 @@ Texture2D& ResourceCollection<Texture2D>::load(const std::string& resourcePath, 
 
 // Get declarations
 template<class T>
-inline T& ResourceCollection<T>::get(const std::string& resourceKey) { return _loadedResources[resourceKey]; }
+T& ResourceCollection<T>::get(const std::string& resourceKey) 
+{
+	// TODO: deal with invalid resources
+	return _loadedResources[resourceKey];
+}
 
 class ResourceLoader
 {

@@ -119,4 +119,12 @@
     <None Include="resources\shaders\glsl\base_frag.frag" />
     <None Include="resources\shaders\refs\base.glslref" />
   </ItemGroup>
+  <ItemGroup>
+    <Image Include="resources\textures\awesomeface.png">
+      <Filter>Arquivos de Recurso</Filter>
+    </Image>
+    <Image Include="resources\textures\container.jpg">
+      <Filter>Arquivos de Recurso</Filter>
+    </Image>
+  </ItemGroup>
 </Project>

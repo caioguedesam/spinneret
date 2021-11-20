@@ -3,14 +3,14 @@
 #include <iostream>
 
 #include "stb_image.h"
+#include "glm.hpp"
 
 Texture2D::Texture2D()
-	: _rendererID(0), _textureUnit(0), 
+	: _rendererID(0),
 	_width(-1), _height(-1), _nChannels(-1) {}
 
-Texture2D::Texture2D(const std::string& filePath, const int& textureUnit)
+Texture2D::Texture2D(const std::string& filePath)
 {
-	_textureUnit = textureUnit;
 	glGenTextures(1, &_rendererID);
 	bind();
 
@@ -21,10 +21,18 @@ Texture2D::Texture2D(const std::string& filePath, const int& textureUnit)
 
 	stbi_set_flip_vertically_on_load(true);
 	byte* texData = stbi_load(filePath.c_str(), &_width, &_height, &_nChannels, 0);
+	GLenum format;
+	if (_nChannels == 3)
+		format = GL_RGB;
+	else if (_nChannels == 4)
+		format = GL_RGBA;
+	else
+		std::cout << "ERROR::TEXTURE2D::no format available for nChannels " << _nChannels << std::endl;
+
 	if (texData) {
 		// TODO: add support for rgba and texture alpha channels
 		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, _width, _height, 0,
-			GL_RGB, GL_UNSIGNED_BYTE, texData);
+			format, GL_UNSIGNED_BYTE, texData);
 		glGenerateMipmap(GL_TEXTURE_2D);
 	}
 	else {
@@ -33,9 +41,15 @@ Texture2D::Texture2D(const std::string& filePath, const int& textureUnit)
 	stbi_image_free(texData);
 }
 
+void Texture2D::activate(const int textureUnit) const
+{
+	// Texture units only go from 0 to 15
+	int offset = glm::clamp(textureUnit, 0, 15);
+	glActiveTexture(GL_TEXTURE0 + offset);
+}
+
 void Texture2D::bind() const
 {
-	glActiveTexture(GL_TEXTURE0 + _textureUnit);
 	glBindTexture(GL_TEXTURE_2D, _rendererID);
 }
 

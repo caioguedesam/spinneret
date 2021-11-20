@@ -185,6 +185,10 @@
     <None Include="resources\shaders\glsl\base_vert.vert" />
     <None Include="resources\shaders\refs\base.glslref" />
   </ItemGroup>
+  <ItemGroup>
+    <Image Include="resources\textures\awesomeface.png" />
+    <Image Include="resources\textures\container.jpg" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

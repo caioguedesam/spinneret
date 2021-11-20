@@ -9,13 +9,13 @@ class Texture2D
 {
 private:
 	uint _rendererID;
-	uint _textureUnit;
 	int _width, _height, _nChannels;
 
 public:
 	Texture2D();
-	Texture2D(const std::string& filePath, const int& textureUnit = 0);
+	Texture2D(const std::string& filePath);
 
+	void activate(const int textureUnit) const;
 	void bind() const;
 	void unbind() const;
 

@@ -50,6 +50,7 @@ void ResourceLoader::loadInitialTextures()
 {
 	// TODO: make some sort of file to read dynamically ref paths to load instead of manual
 	loadTexture2D("container.jpg", "container");
+	loadTexture2D("awesomeface.png", "awesome");
 }
 
 Shader& ResourceLoader::loadShader(const std::string& refPath, const std::string& shaderKey)
