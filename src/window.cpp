@@ -1,10 +1,12 @@
 #include "window.h"
 #include <iostream>
+#include "logs.h"
 
 int Window::init(const uint& width, const uint& height, const char* windowTitle)
 {
 	_windowObj = glfwCreateWindow(width, height, windowTitle, NULL, NULL);
 	if (_windowObj == NULL) {
+		logError("WINDOW", "failed to create new window object");
 		return 0;
 	}
 	setFramebufferSizeCallback(framebufferSizeCallback);

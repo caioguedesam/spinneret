@@ -1,9 +1,10 @@
 #include "main_init.h"
 #include "main_destroy.h"
 #include <iostream>
+#include "logs.h"
 
 void glfwErrorCallback(int error, const char* description) {
-	std::cout << "ERROR::GLFW::" << description << std::endl;
+	logError("GLFW_ON_ERROR", description);
 }
 
 void initializeGlfw() {
@@ -25,7 +26,7 @@ int initializeWindowAndContext(Window* window, const uint& width, const uint& he
 
 int initializeGlad() {
 	if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress)) {
-		std::cout << "Failed to initialize GLAD" << std::endl;
+		logError("GLAD", "failed to initialize GLAD");
 		return 0;
 	}
 	return 1;

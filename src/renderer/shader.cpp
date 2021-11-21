@@ -2,6 +2,7 @@
 #include <fstream>
 #include <sstream>
 #include <iostream>
+#include "logs.h"
 
 Shader::Shader() : shaderID(0) {}
 
@@ -37,8 +38,7 @@ void Shader::parseShaderReferenceFile(const std::string& refPath, std::string& o
 		refFile.close();
 	}
 	catch (std::ifstream::failure e) {
-		std::cout << "ERROR::SHADER_REFERENCE::" << e.what() << std::endl;
-		std::cout << "Failure while parsing reference file at " << refPath << std::endl;
+		logError("SHADER_REFERENCE", "failure to parse reference file at " + refPath + ":" + e.what());
 	}
 }
 
@@ -54,8 +54,7 @@ void Shader::parseShaderFile(const std::string& filePath, std::string& output)
 		output = shaderStream.str();
 	}
 	catch (std::ifstream::failure e) {
-		std::cout << "ERROR::SHADER::" << e.what() << std::endl;
-		std::cout << "Failure while parsing file at " << filePath << std::endl;
+		logError("SHADER", "failure to pare shader file at" + filePath);
 	}
 }
 
@@ -73,7 +72,8 @@ void Shader::compileShader(GLenum shaderType, const char* shaderSource, uint& ou
 	else {
 		char errorLog[512];
 		glGetShaderInfoLog(shader, 512, NULL, errorLog);
-		std::cout << "ERROR::SHADER::COMPILATION::" << errorLog << std::endl;
+		std::string msg = errorLog;
+		logError("SHADER", "failure to compile shader: " + msg);
 	}
 }
 
@@ -92,7 +92,8 @@ void Shader::linkProgram(const uint& vertex, const uint& fragment, uint& output)
 	else {
 		char errorLog[512];
 		glGetProgramInfoLog(program, 512, NULL, errorLog);
-		std::cout << "ERROR::SHADER::LINKING::" << errorLog << std::endl;
+		std::string msg = errorLog;
+		logError("SHADER", "failure to link shader program: " + msg);
 	}
 	glDeleteShader(vertex);
 	glDeleteShader(fragment);
@@ -110,7 +111,7 @@ void Shader::setInt(const std::string& name, const int& value) const
 
 void Shader::setFloat(const std::string& name, const float& value) const
 {
-	glUniform1i(glGetUniformLocation(shaderID, name.c_str()), value);
+	glUniform1f(glGetUniformLocation(shaderID, name.c_str()), value);
 }
 
 void Shader::setBool(const std::string& name, const bool& value) const

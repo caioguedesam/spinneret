@@ -4,6 +4,7 @@
 
 #include "stb_image.h"
 #include "glm.hpp"
+#include "logs.h"
 
 Texture2D::Texture2D()
 	: _rendererID(0),
@@ -27,7 +28,7 @@ Texture2D::Texture2D(const std::string& filePath)
 	else if (_nChannels == 4)
 		format = GL_RGBA;
 	else
-		std::cout << "ERROR::TEXTURE2D::no format available for nChannels " << _nChannels << std::endl;
+		logError("TEXTURE_2D", "no color format available for image with " + std::to_string(_nChannels) + " at " + filePath);
 
 	if (texData) {
 		// TODO: add support for rgba and texture alpha channels
@@ -36,7 +37,7 @@ Texture2D::Texture2D(const std::string& filePath)
 		glGenerateMipmap(GL_TEXTURE_2D);
 	}
 	else {
-		std::cout << "ERROR::TEXTURE2D::Failed to load texture data for " << filePath << std::endl;
+		logError("TEXTURE_2D", "failed to load texture data for " + filePath);
 	}
 	stbi_image_free(texData);
 }

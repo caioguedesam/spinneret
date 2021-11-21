@@ -1,7 +1,7 @@
 #include "resource_loader/resource_loader.h"
 
 template<>
-Shader& ResourceCollection<Shader>::load(const std::string& resourcePath, const std::string& resourceKey) 
+Shader* ResourceCollection<Shader>::load(const std::string& resourcePath, const std::string& resourceKey) 
 {
 	if (_loadedResources.count(resourceKey)) {
 		return get(resourceKey);
@@ -18,7 +18,7 @@ Shader& ResourceCollection<Shader>::load(const std::string& resourcePath, const 
 }
 
 template<>
-Texture2D& ResourceCollection<Texture2D>::load(const std::string& resourcePath, const std::string& resourceKey) 
+Texture2D* ResourceCollection<Texture2D>::load(const std::string& resourcePath, const std::string& resourceKey) 
 {
 	if (_loadedResources.count(resourceKey)) {
 		return get(resourceKey);
@@ -53,22 +53,22 @@ void ResourceLoader::loadInitialTextures()
 	loadTexture2D("awesomeface.png", "awesome");
 }
 
-Shader& ResourceLoader::loadShader(const std::string& refPath, const std::string& shaderKey)
+Shader* ResourceLoader::loadShader(const std::string& refPath, const std::string& shaderKey)
 {
 	return _shaders.load(refPath, shaderKey);
 }
 
-Shader& ResourceLoader::getShader(const std::string& shaderKey)
+Shader* ResourceLoader::getShader(const std::string& shaderKey)
 {
 	return _shaders.get(shaderKey);
 }
 
-Texture2D& ResourceLoader::loadTexture2D(const std::string& texPath, const std::string& textureKey)
+Texture2D* ResourceLoader::loadTexture2D(const std::string& texPath, const std::string& textureKey)
 {
 	return _textures.load(texPath, textureKey);
 }
 
-Texture2D& ResourceLoader::getTexture2D(const std::string& textureKey)
+Texture2D* ResourceLoader::getTexture2D(const std::string& textureKey)
 {
 	return _textures.get(textureKey);
 }

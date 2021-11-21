@@ -113,6 +113,9 @@
     <ClInclude Include="include\renderer\texture_2d.h">
       <Filter>Arquivos de Cabeçalho</Filter>
     </ClInclude>
+    <ClInclude Include="include\logs.h">
+      <Filter>Arquivos de Cabeçalho</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="resources\shaders\glsl\base_vert.vert" />

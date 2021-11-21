@@ -163,6 +163,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\gl_includes.h" />
+    <ClInclude Include="include\logs.h" />
     <ClInclude Include="include\main_destroy.h" />
     <ClInclude Include="include\main_init.h" />
     <ClInclude Include="include\renderer\index_buffer.h" />
