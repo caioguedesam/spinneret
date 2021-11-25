@@ -41,7 +41,7 @@ int main(int argc, char* argv[]) {
 	Renderer renderer;
 	// TODO: change view setting to camera
 	renderer.setViewMatrix(glm::translate(glm::mat4(1.f), glm::vec3(0.0f, 0.0f, -3.0f)));
-	renderer.setPerspectiveMatrix(0.f, 800.f, 0.f, 600.f, 0.1f, 100.f);
+	renderer.setProjectionMatrix(0.f, 800.f, 0.f, 600.f, 0.1f, 100.f);
 	SpriteRenderable spriteRenderable("base");
 	spriteRenderable.setTexture("container", 0);
 	spriteRenderable.setTexture("awesome", 1);

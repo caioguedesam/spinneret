@@ -153,6 +153,7 @@
     <ClCompile Include="src\renderer\renderable\basic_renderable.cpp" />
     <ClCompile Include="src\renderer\renderable\renderable.cpp" />
     <ClCompile Include="src\renderer\renderable\sprite_renderable.cpp" />
+    <ClCompile Include="src\renderer\renderable\sprite_renderable_vertex_data.cpp" />
     <ClCompile Include="src\renderer\renderer.cpp" />
     <ClCompile Include="src\renderer\shader.cpp" />
     <ClCompile Include="src\renderer\stbi_implementation.cpp" />
@@ -171,6 +172,7 @@
     <ClInclude Include="include\renderer\renderable\basic_renderable.h" />
     <ClInclude Include="include\renderer\renderable\renderable.h" />
     <ClInclude Include="include\renderer\renderable\sprite_renderable.h" />
+    <ClInclude Include="include\renderer\renderable\sprite_renderable_vertex_data.h" />
     <ClInclude Include="include\renderer\renderer.h" />
     <ClInclude Include="include\renderer\shader.h" />
     <ClInclude Include="include\renderer\texture_2d.h" />

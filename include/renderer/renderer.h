@@ -3,7 +3,7 @@
 #include <set>
 
 #include "renderer/renderable/renderable.h"
-#include "renderer/renderable/sprite_renderable.h"
+#include "renderer/renderable/sprite_renderable_vertex_data.h"
 #include "mat4x4.hpp"
 
 class Renderer {
@@ -11,7 +11,7 @@ private:
 	std::set<Renderable*> _renderables;
 
 	glm::mat4 _view;
-	glm::mat4 _perspective;
+	glm::mat4 _projection;
 
 	SpriteRenderableVertexData _spriteRenderableVertexData;
 public:
@@ -19,7 +19,7 @@ public:
 	Renderer();
 
 	void setViewMatrix(const glm::mat4 view);
-	void setPerspectiveMatrix(const float& left, const float& right, const float& bottom, const float& top,
+	void setProjectionMatrix(const float& left, const float& right, const float& bottom, const float& top,
 		const float& near, const float& far);
 	
 	void addRenderable(Renderable& renderable);
@@ -29,5 +29,5 @@ public:
 	void draw() const;
 
 	inline glm::mat4 getViewMatrix() const { return _view; }
-	inline glm::mat4 getPerspectiveMatrix() const { return _perspective; }
+	inline glm::mat4 getProjectionMatrix() const { return _projection; }
 };

@@ -2,6 +2,7 @@
 #include "gl_includes.h"
 #include "typedefs.h"
 #include "gtc/matrix_transform.hpp"
+#include "renderer/renderable/sprite_renderable.h"
 
 Renderer::Renderer()
 {
@@ -14,10 +15,10 @@ void Renderer::setViewMatrix(const glm::mat4 view)
 	_view = view;
 }
 
-void Renderer::setPerspectiveMatrix(const float& left, const float& right, const float& bottom, const float& top,
+void Renderer::setProjectionMatrix(const float& left, const float& right, const float& bottom, const float& top,
 	const float& near, const float& far)
 {
-	_perspective = glm::ortho(left, right, bottom, top, near, far);
+	_projection = glm::ortho(left, right, bottom, top, near, far);
 }
 
 void Renderer::addRenderable(Renderable& renderable)
@@ -39,7 +40,10 @@ void Renderer::clear() const
 
 void Renderer::draw() const
 {
+	glm::mat4 mvp = getProjectionMatrix() * getViewMatrix();
 	for (auto& renderable : _renderables) {
+		// TODO: send actual MVP
+		renderable->sendMVPUniform(mvp);
 		renderable->draw();
 	}
 }

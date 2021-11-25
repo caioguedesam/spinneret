@@ -2,25 +2,6 @@
 #include "resource_loader/resource_loader.h"
 #include "logs.h"
 
-// TODO: vertices are in normalized device coordinates. Must update base shader
-// to use MVP matrix and change these to object space.
-float SpriteRenderableVertexData::_vertices[] = {
-	// positions	  // uvs
-	0.0f, 0.0f, 0.0f, 0.0f, 0.0f,
-	1.0f, 0.0f, 0.0f, 1.0f, 0.0f,
-	1.0f, 1.0f, 0.0f, 1.0f, 1.0f,
-	0.0f, 1.0f, 0.0f, 0.0f, 1.0f
-};
-
-uint SpriteRenderableVertexData::_indices[] = {
-	0, 1, 2,
-	0, 2, 3
-};
-
-SpriteRenderableVertexData::SpriteRenderableVertexData()
-	: vertexBuffer(SpriteRenderableVertexData::_vertices, sizeof(SpriteRenderableVertexData::_vertices)),
-	indexBuffer(SpriteRenderableVertexData::_indices, sizeof(SpriteRenderableVertexData::_indices)) {}
-
 SpriteRenderableVertexData* SpriteRenderable::_vertexData;
 
 SpriteRenderable::SpriteRenderable(const std::string& shaderName)
@@ -39,16 +20,6 @@ void SpriteRenderable::init(SpriteRenderableVertexData* vertexData)
 	// uvs (location 1)
 	layout.push<float>(2);
 	_vertexData->vertexArray.addBuffer(_vertexData->vertexBuffer, layout);
-}
-
-void SpriteRenderable::setShader(const std::string& shaderName)
-{
-	Shader* shader = ResourceLoader::getShader(shaderName);
-	if (shader == nullptr) {
-		logError("SPRITE_RENDERABLE", "Could not load shader " + shaderName + " from resources");
-		return;
-	}
-	_shader = shader;
 }
 
 void SpriteRenderable::setTexture(const std::string& textureName, const uint& textureUnit)

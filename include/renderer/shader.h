@@ -2,6 +2,7 @@
 
 #include "typedefs.h"
 #include "gl_includes.h"
+#include "mat4x4.hpp"
 
 #include <string>
 
@@ -23,4 +24,5 @@ public:
 	void setInt(const std::string& name, const int& value) const;
 	void setFloat(const std::string& name, const float& value) const;
 	void setBool(const std::string& name, const bool& value) const;
+	void setMat4(const std::string& name, const glm::mat4& value) const;
 };

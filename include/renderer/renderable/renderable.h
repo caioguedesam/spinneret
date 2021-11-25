@@ -11,11 +11,16 @@ class Renderable
 {
 private:
 	Renderer* _renderer;
+protected:
+	Shader* _shader;
 
 	glm::mat4 _model;
 public:
 
 	void bind(Renderer* renderer);
-	glm::mat4 getMVP() const;
+
+	void setShader(const std::string& shaderName);
+	void sendMVPUniform(const glm::mat4& view_projection_matrix);
+
 	virtual void draw() = 0;
 };
