@@ -20,9 +20,9 @@ void Renderable::setShader(const std::string& shaderName)
 	_shader = shader;
 }
 
-void Renderable::sendMVPUniform(const glm::mat4& view_projection_matrix)
+void Renderable::sendMVPUniform(const glm::mat4& viewProjectionMatrix)
 {
 	// TODO: Replace identity temp with _model matrix
-	glm::mat4 mvp = view_projection_matrix * glm::mat4(1.f);
+	glm::mat4 mvp = viewProjectionMatrix * glm::mat4(1.f);
 	_shader->setMat4("u_mvp", mvp);
 }

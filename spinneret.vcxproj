@@ -145,6 +145,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\camera\camera_2d.cpp" />
     <ClCompile Include="src\glad.c" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\main_destroy.cpp" />
@@ -164,6 +165,7 @@
     <ClCompile Include="src\window.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="include\camera\camera_2d.h" />
     <ClInclude Include="include\gl_includes.h" />
     <ClInclude Include="include\logs.h" />
     <ClInclude Include="include\main_destroy.h" />

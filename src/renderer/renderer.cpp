@@ -10,15 +10,9 @@ Renderer::Renderer()
 	SpriteRenderable::init(&_spriteRenderableVertexData);
 }
 
-void Renderer::setViewMatrix(const glm::mat4 view)
+void Renderer::setCamera(Camera2D& camera)
 {
-	_view = view;
-}
-
-void Renderer::setProjectionMatrix(const float& left, const float& right, const float& bottom, const float& top,
-	const float& near, const float& far)
-{
-	_projection = glm::ortho(left, right, bottom, top, near, far);
+	_camera = &camera;
 }
 
 void Renderer::addRenderable(Renderable& renderable)
@@ -40,10 +34,9 @@ void Renderer::clear() const
 
 void Renderer::draw() const
 {
-	glm::mat4 mvp = getProjectionMatrix() * getViewMatrix();
+	glm::mat4 viewProjectionMatrix = _camera->getViewProjectionMatrix();
 	for (auto& renderable : _renderables) {
-		// TODO: send actual MVP
-		renderable->sendMVPUniform(mvp);
+		renderable->sendMVPUniform(viewProjectionMatrix);
 		renderable->draw();
 	}
 }

@@ -39,9 +39,10 @@ int main(int argc, char* argv[]) {
 
 	ResourceLoader::init();
 	Renderer renderer;
-	// TODO: change view setting to camera
-	renderer.setViewMatrix(glm::translate(glm::mat4(1.f), glm::vec3(0.0f, 0.0f, -3.0f)));
-	renderer.setProjectionMatrix(0.f, 800.f, 0.f, 600.f, 0.1f, 100.f);
+	Camera2D camera((float)width, (float)height, 0.1f, 100.f);
+	camera.moveTo(0.f, 0.f, -10.f);
+	renderer.setCamera(camera);
+
 	SpriteRenderable spriteRenderable("base");
 	spriteRenderable.setTexture("container", 0);
 	spriteRenderable.setTexture("awesome", 1);

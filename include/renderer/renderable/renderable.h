@@ -20,7 +20,7 @@ public:
 	void bind(Renderer* renderer);
 
 	void setShader(const std::string& shaderName);
-	void sendMVPUniform(const glm::mat4& view_projection_matrix);
+	void sendMVPUniform(const glm::mat4& viewProjectionMatrix);
 
 	virtual void draw() = 0;
 };
