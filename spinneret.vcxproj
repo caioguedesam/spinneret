@@ -151,6 +151,7 @@
     <ClCompile Include="src\main_init.cpp" />
     <ClCompile Include="src\renderer\index_buffer.cpp" />
     <ClCompile Include="src\renderer\renderable\basic_renderable.cpp" />
+    <ClCompile Include="src\renderer\renderable\renderable.cpp" />
     <ClCompile Include="src\renderer\renderable\sprite_renderable.cpp" />
     <ClCompile Include="src\renderer\renderer.cpp" />
     <ClCompile Include="src\renderer\shader.cpp" />

@@ -3,6 +3,7 @@
 #include <map>
 #include <string>
 
+#include "renderer/renderer.h"
 #include "renderer/renderable/renderable.h"
 #include "renderer/texture_2d.h"
 #include "typedefs.h"
