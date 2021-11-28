@@ -1,31 +1,17 @@
 #include "main_init.h"
-#include "main_destroy.h"
-#include <iostream>
 #include "logs.h"
+#include "SDL.h"
 
-void glfwErrorCallback(int error, const char* description) {
-	logError("GLFW_ON_ERROR", description);
-}
-
-void initializeGlfw() {
-	glfwSetErrorCallback(glfwErrorCallback);
-	glfwInit();
-	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
-	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
-	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
-}
-
-int initializeWindowAndContext(Window* window, const uint& width, const uint& height, const char* title) {
-	if (!window->init(width, height, title)) {
-		destroyGlfw();
+int initSDL() {
+	if (SDL_Init(SDL_INIT_VIDEO) == -1) {
 		return 0;
 	}
-	window->makeContextCurrent();
+	SDL_GL_LoadLibrary(NULL);
 	return 1;
 }
 
-int initializeGlad() {
-	if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress)) {
+int initGlad() {
+	if (!gladLoadGLLoader(SDL_GL_GetProcAddress)) {
 		logError("GLAD", "failed to initialize GLAD");
 		return 0;
 	}

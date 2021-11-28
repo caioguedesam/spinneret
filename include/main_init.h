@@ -1,8 +1,7 @@
 #pragma once
-#include <window.h>
 
-void glfwErrorCallback(int error, const char* description);
+#include "SDL.h"
+#include "gl_includes.h"
 
-void initializeGlfw();
-int initializeWindowAndContext(Window* window, const uint& width, const uint& height, const char* title);
-int initializeGlad();
+int initSDL();
+int initGlad();
