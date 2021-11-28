@@ -24,6 +24,7 @@ void render(Display& display, Renderer& renderer) {
 
 void handleKeyPressEvent(SDL_Keysym& key, Camera2D* camera) {
 	glm::vec3 cameraPos = camera->getPosition();
+	float cameraAngle = camera->getAngle();
 	const float cameraSpeed = 2.25f;
 	switch (key.sym) {
 	// Camera movement
@@ -38,6 +39,13 @@ void handleKeyPressEvent(SDL_Keysym& key, Camera2D* camera) {
 		break;
 	case SDLK_RIGHT:
 		camera->moveTo(cameraPos + cameraSpeed * glm::vec3(1.f, 0.f, 0.f));
+		break;
+	// Camera rotation
+	case SDLK_a:
+		camera->rotateTo(cameraAngle - 0.5f);
+		break;
+	case SDLK_d:
+		camera->rotateTo(cameraAngle + 0.5f);
 		break;
 	// Quit application
 	case SDLK_ESCAPE:
