@@ -25,6 +25,7 @@ public:
 	void moveTo(const glm::vec3& newPosition);
 	void moveTo(const float& x, const float& y, const float& z);
 
+	inline glm::vec3 getPosition() const { return _position; }
 	inline glm::mat4 getViewMatrix() const { return _viewMatrix; }
 	inline glm::mat4 getProjectionMatrix() const { return _projMatrix; }
 	inline glm::mat4 getViewProjectionMatrix() const { return _projMatrix * _viewMatrix; }

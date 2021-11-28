@@ -1,3 +1,4 @@
+//#include <SDL.h>
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
 
@@ -26,7 +27,41 @@ void render(Window& window, Renderer& renderer) {
 	window.swapBuffers();
 }
 
+//void handleKeyPressEvent(SDL_Keysym& key, Camera2D* camera) {
+//	glm::vec3 cameraPos = camera->getPosition();
+//	const float cameraSpeed = 0.25f;
+//	switch (key.sym) {
+//	case SDLK_UP:
+//		camera->moveTo(cameraPos + cameraSpeed * glm::vec3(0.f, 1.f, 0.f));
+//		break;
+//	case SDLK_DOWN:
+//		camera->moveTo(cameraPos - cameraSpeed * glm::vec3(0.f, 1.f, 0.f));
+//		break;
+//	case SDLK_LEFT:
+//		camera->moveTo(cameraPos - cameraSpeed * glm::vec3(1.f, 0.f, 0.f));
+//		break;
+//	case SDLK_RIGHT:
+//		camera->moveTo(cameraPos + cameraSpeed * glm::vec3(1.f, 0.f, 0.f));
+//		break;
+//	}
+//}
+
+// TODO: not permanent event solution, only for testing purposes
+//void pollEvents(Camera2D* camera) {
+//	SDL_Event event;
+//	while (SDL_PollEvent(&event)) {
+//		switch (event.type) {
+//		case SDL_KEYDOWN:
+//			handleKeyPressEvent(event.key.keysym, camera);
+//		}
+//	}
+//}
+
 int main(int argc, char* argv[]) {
+	/*if (SDL_Init(SDL_INIT_EVENTS) == -1) {
+		return -1;
+	}*/
+
 	initializeGlfw();
 
 	Window window;
@@ -49,6 +84,7 @@ int main(int argc, char* argv[]) {
 	renderer.addRenderable(spriteRenderable);
 
 	while (!window.shouldClose()) {
+		//pollEvents(&camera);
 		window.processInput();
 		render(window, renderer);
 		window.pollInput();
