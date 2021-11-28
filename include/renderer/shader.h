@@ -5,9 +5,12 @@
 #include "mat4x4.hpp"
 
 #include <string>
+#include <unordered_map>
 
 class Shader
 {
+private:
+	mutable std::unordered_map<std::string, GLint> _uniformLocationCache;
 public:
 	uint shaderID;
 
@@ -21,6 +24,7 @@ public:
 
 	void use() const;
 
+	GLint getUniformLocation(const std::string& name) const;
 	void setInt(const std::string& name, const int& value) const;
 	void setFloat(const std::string& name, const float& value) const;
 	void setBool(const std::string& name, const bool& value) const;
