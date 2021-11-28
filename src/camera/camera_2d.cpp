@@ -1,5 +1,6 @@
 #include "camera/camera_2d.h"
 #include "gtc/matrix_transform.hpp"
+#include <iostream>
 
 Camera2D::Camera2D(const float& width, const float& height, const float& near, const float& far)
 	: _width(width), _height(height), _near(near), _far(far),
@@ -12,6 +13,7 @@ Camera2D::Camera2D(const float& width, const float& height, const float& near, c
 void Camera2D::moveTo(const glm::vec3& newPosition)
 {
 	_position = newPosition;
+	std::cout << "Updated camera position to (" << newPosition.x << "," << newPosition.y << "," << newPosition.z << ")" << std::endl;
 	updateViewMatrix();
 }
 
@@ -23,7 +25,7 @@ void Camera2D::moveTo(const float& x, const float& y, const float& z)
 void Camera2D::updateViewMatrix()
 {
 	// TODO: add rotation transform
-	_viewMatrix = glm::translate(_viewMatrix, _position);
+	_viewMatrix = glm::translate(glm::mat4(1.f), _position);
 }
 
 void Camera2D::updateProjectionMatrix()

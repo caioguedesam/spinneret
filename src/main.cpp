@@ -67,6 +67,7 @@ int main(int argc, char* argv[]) {
 	if (!display.createWindowAndContext(width, height, TITLE)) {
 		return -1;
 	}
+
 	if (!initGlad()) {
 		return -1;
 	}
