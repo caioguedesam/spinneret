@@ -6,6 +6,7 @@
 #include "display/display.h"
 #include "rendering/rendering_system.h"
 #include "loading/resource_loader.h"
+#include "time/time_system.h"
 
 #include "component_system/entities/entity.h"
 #include "component_system/components/transform_component.h"
@@ -17,7 +18,7 @@
 int width = 800;
 int height = 600;
 
-bool isRunning = true;
+bool quit = false;
 
 void render(Display& display, RenderingSystem& renderingSystem) {
 	renderingSystem.clear();
@@ -53,7 +54,7 @@ void handleKeyPressEvent(SDL_Keysym& key, Camera2DComponent* camera) {
 		break;
 	// Quit application
 	case SDLK_ESCAPE:
-		isRunning = false;
+		quit = true;
 		break;
 	}
 }
@@ -85,6 +86,7 @@ int main(int argc, char* argv[]) {
 	}
 
 	ResourceLoader::init();
+	TimeSystem::init();
 	RenderingSystem renderingSystem;
 
 	Entity cameraObj;
@@ -109,7 +111,9 @@ int main(int argc, char* argv[]) {
 
 	TransformComponent* boxTransform = box.getTransform();
 	TransformComponent* box2Transform = box2.getTransform();
-	while (isRunning) {
+	while (!quit) {
+		TimeSystem::updateTime();
+		std::cout << "t: " << TimeSystem::getTime() << ", dt: " << TimeSystem::getDeltaTime() << std::endl;
 		boxTransform->setPosition(boxTransform->getPosition().x + 0.05f, 0.f, 0.f);
 		box2Transform->setPosition(box2Transform->getPosition().x + 0.025f, box2Transform->getPosition().y + 0.01f, 0.f);
 		pollEvents(camera2D);
