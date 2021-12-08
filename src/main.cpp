@@ -5,7 +5,7 @@
 #include "main_init.h"
 #include "display/display.h"
 #include "rendering/rendering_system.h"
-#include "resource_loader/resource_loader.h"
+#include "loading/resource_loader.h"
 
 #include "component_system/entities/entity.h"
 #include "component_system/components/transform_component.h"

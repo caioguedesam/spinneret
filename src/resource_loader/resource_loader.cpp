@@ -1,4 +1,4 @@
-#include "resource_loader/resource_loader.h"
+#include "loading/resource_loader.h"
 
 template<>
 Shader* ResourceCollection<Shader>::load(const std::string& resourcePath, const std::string& resourceKey) 

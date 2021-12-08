@@ -184,7 +184,7 @@
     <ClInclude Include="include\rendering\vertex_array.h" />
     <ClInclude Include="include\rendering\vertex_buffer.h" />
     <ClInclude Include="include\rendering\vertex_buffer_layout.h" />
-    <ClInclude Include="include\resource_loader\resource_loader.h" />
+    <ClInclude Include="include\loading\resource_loader.h" />
     <ClInclude Include="include\stb_image.h" />
     <ClInclude Include="include\typedefs.h" />
   </ItemGroup>

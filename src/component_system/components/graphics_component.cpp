@@ -1,6 +1,6 @@
 #include "component_system/components/graphics_component.h"
 #include "component_system/components/transform_component.h"
-#include "resource_loader/resource_loader.h"
+#include "loading/resource_loader.h"
 #include "vec3.hpp"
 #include "gtc/matrix_transform.hpp"
 
