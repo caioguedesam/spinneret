@@ -8,6 +8,7 @@
 #include "resource_loader/resource_loader.h"
 
 #include "component_system/entities/entity.h"
+#include "component_system/components/transform_component.h"
 #include "component_system/components/sprite_graphics_component.h"
 
 #define TITLE "Spinneret"
@@ -95,7 +96,9 @@ int main(int argc, char* argv[]) {
 	boxGraphics->setTexture("awesome", 1);
 	renderingSystem.addDrawTarget(boxGraphics);
 
+	TransformComponent* boxTransform = box.getTransform();
 	while (isRunning) {
+		boxTransform->setPosition(boxTransform->getPosition().x + 0.05f, 0.f, 0.f);
 		pollEvents(&camera);
 		render(display, renderingSystem);
 	}
