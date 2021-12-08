@@ -1,4 +1,5 @@
 #include "component_system/components/graphics_component.h"
+#include "component_system/entities/entity.h"
 #include "component_system/components/transform_component.h"
 #include "loading/resource_loader.h"
 #include "vec3.hpp"

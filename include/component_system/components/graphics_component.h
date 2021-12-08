@@ -1,6 +1,5 @@
 #pragma once
 
-#include "component_system/entities/entity.h"
 #include "component_system/components/component.h"
 #include "rendering/shader.h"
 
