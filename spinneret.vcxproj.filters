@@ -24,7 +24,7 @@
     <ClCompile Include="src\main_init.cpp">
       <Filter>Arquivos de Origem</Filter>
     </ClCompile>
-    <ClCompile Include="src\resource_loader\resource_loader.cpp">
+    <ClCompile Include="src\loading\resource_loader.cpp">
       <Filter>Arquivos de Origem</Filter>
     </ClCompile>
     <ClCompile Include="src\camera\camera_2d.cpp">

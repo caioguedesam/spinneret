@@ -163,7 +163,7 @@
     <ClCompile Include="src\rendering\texture_2d.cpp" />
     <ClCompile Include="src\rendering\vertex_array.cpp" />
     <ClCompile Include="src\rendering\vertex_buffer.cpp" />
-    <ClCompile Include="src\resource_loader\resource_loader.cpp" />
+    <ClCompile Include="src\loading\resource_loader.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\camera\camera_2d.h" />
