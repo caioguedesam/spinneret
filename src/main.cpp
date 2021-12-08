@@ -101,9 +101,18 @@ int main(int argc, char* argv[]) {
 	boxGraphics->setTexture("awesome", 1);
 	renderingSystem.addDrawTarget(boxGraphics);
 
+	Entity box2;
+	box2.addComponent(std::type_index(typeid(SpriteGraphicsComponent)), new SpriteGraphicsComponent(&box2, "base"));
+	SpriteGraphicsComponent* boxGraphics2 = box2.getComponent<SpriteGraphicsComponent>();
+	boxGraphics2->setTexture("container", 0);
+	boxGraphics2->setTexture("awesome", 1);
+	renderingSystem.addDrawTarget(boxGraphics2);
+
 	TransformComponent* boxTransform = box.getTransform();
+	TransformComponent* box2Transform = box2.getTransform();
 	while (isRunning) {
 		boxTransform->setPosition(boxTransform->getPosition().x + 0.05f, 0.f, 0.f);
+		box2Transform->setPosition(box2Transform->getPosition().x + 0.025f, box2Transform->getPosition().y + 0.01f, 0.f);
 		pollEvents(camera2D);
 		render(display, renderingSystem);
 	}
