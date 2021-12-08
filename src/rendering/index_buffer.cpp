@@ -1,4 +1,4 @@
-#include "renderer/index_buffer.h"
+#include "rendering/index_buffer.h"
 
 #include "gl_includes.h"
 

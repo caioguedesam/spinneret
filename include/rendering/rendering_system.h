@@ -3,19 +3,19 @@
 #include <set>
 
 #include "camera/camera_2d.h"
-#include "renderer/renderable/sprite_renderable_vertex_data.h"
+#include "rendering/sprite_quad_vertex_data.h"
 #include "component_system/components/graphics_component.h"
 
-class Renderer {
+class RenderingSystem {
 private:
 	std::set<GraphicsComponent*> _drawTargets;
 
 	Camera2D* _camera;
 
-	SpriteRenderableVertexData _spriteQuadVertexData;
+	SpriteQuadVertexData _spriteQuadVertexData;
 public:
 	
-	Renderer();
+	RenderingSystem();
 
 	void setCamera(Camera2D& camera);
 	void addDrawTarget(GraphicsComponent* target);

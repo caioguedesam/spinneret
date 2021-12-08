@@ -1,4 +1,4 @@
-#include "renderer/texture_2d.h"
+#include "rendering/texture_2d.h"
 
 #include <iostream>
 

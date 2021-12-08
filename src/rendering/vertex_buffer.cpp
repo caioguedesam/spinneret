@@ -1,4 +1,4 @@
-#include "renderer/vertex_buffer.h"
+#include "rendering/vertex_buffer.h"
 #include "gl_includes.h"
 
 VertexBuffer::VertexBuffer(const void* vertexData, const uint& bufferSize)

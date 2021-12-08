@@ -4,8 +4,8 @@
 #include <unordered_map>
 #include <iostream>
 
-#include "renderer/shader.h"
-#include "renderer/texture_2d.h"
+#include "rendering/shader.h"
+#include "rendering/texture_2d.h"
 #include "logs.h"
 
 template <class T>

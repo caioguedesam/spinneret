@@ -1,12 +1,12 @@
 #include "component_system/components/sprite_graphics_component.h"
 #include "resource_loader/resource_loader.h"
 
-SpriteRenderableVertexData* SpriteGraphicsComponent::_quadVertexData;
+SpriteQuadVertexData* SpriteGraphicsComponent::_quadVertexData;
 
 SpriteGraphicsComponent::SpriteGraphicsComponent(Entity* entity, const std::string& shaderName)
 	: GraphicsComponent(entity, shaderName) {}
 
-void SpriteGraphicsComponent::initQuadVertexData(SpriteRenderableVertexData* vertexData)
+void SpriteGraphicsComponent::initQuadVertexData(SpriteQuadVertexData* vertexData)
 {
 	_quadVertexData = vertexData;
 

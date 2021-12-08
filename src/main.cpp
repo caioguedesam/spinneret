@@ -4,8 +4,7 @@
 
 #include "main_init.h"
 #include "display/display.h"
-#include "renderer/renderer.h"
-#include "renderer/renderable/sprite_renderable.h"
+#include "rendering/rendering_system.h"
 #include "resource_loader/resource_loader.h"
 
 #include "component_system/entities/entity.h"
@@ -18,9 +17,9 @@ int height = 600;
 
 bool isRunning = true;
 
-void render(Display& display, Renderer& renderer) {
-	renderer.clear();
-	renderer.draw();
+void render(Display& display, RenderingSystem& renderingSystem) {
+	renderingSystem.clear();
+	renderingSystem.draw();
 
 	display.swapWindowBuffers();
 }
@@ -84,26 +83,21 @@ int main(int argc, char* argv[]) {
 	}
 
 	ResourceLoader::init();
-	Renderer renderer;
+	RenderingSystem renderingSystem;
 	Camera2D camera((float)width, (float)height, 0.1f, 100.f);
 	camera.moveTo(0.f, 0.f, -10.f);
-	renderer.setCamera(camera);
-
-	/*SpriteRenderable spriteRenderable("base");
-	spriteRenderable.setTexture("container", 0);
-	spriteRenderable.setTexture("awesome", 1);
-	renderer.addRenderable(spriteRenderable);*/
+	renderingSystem.setCamera(camera);
 
 	Entity box;
 	box.addComponent(std::type_index(typeid(SpriteGraphicsComponent)), new SpriteGraphicsComponent(&box, "base"));
 	SpriteGraphicsComponent* boxGraphics = box.getComponent<SpriteGraphicsComponent>();
 	boxGraphics->setTexture("container", 0);
 	boxGraphics->setTexture("awesome", 1);
-	renderer.addDrawTarget(boxGraphics);
+	renderingSystem.addDrawTarget(boxGraphics);
 
 	while (isRunning) {
 		pollEvents(&camera);
-		render(display, renderer);
+		render(display, renderingSystem);
 	}
 
 	SDL_Quit();

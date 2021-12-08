@@ -1,8 +1,8 @@
 #pragma once
 
 #include "component_system/components/graphics_component.h"
-#include "renderer/renderable/sprite_renderable_vertex_data.h"
-#include "renderer/texture_2d.h"
+#include "rendering/sprite_quad_vertex_data.h"
+#include "rendering/texture_2d.h"
 
 #include <map>
 #include <string>
@@ -11,12 +11,12 @@
 class SpriteGraphicsComponent : public GraphicsComponent
 {
 private:
-	static SpriteRenderableVertexData* _quadVertexData;
+	static SpriteQuadVertexData* _quadVertexData;
 	std::map<uint, Texture2D*> _textures;
 public:
 	SpriteGraphicsComponent(Entity* entity, const std::string& shaderName);
 
-	static void initQuadVertexData(SpriteRenderableVertexData* vertexData);
+	static void initQuadVertexData(SpriteQuadVertexData* vertexData);
 	
 	void setTexture(const std::string& textureName, const uint& textureUnit);
 	void draw() override;

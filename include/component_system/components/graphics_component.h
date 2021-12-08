@@ -2,7 +2,7 @@
 
 #include "component_system/entities/entity.h"
 #include "component_system/components/component.h"
-#include "renderer/shader.h"
+#include "rendering/shader.h"
 
 #include "mat4x4.hpp"
 #include <string>

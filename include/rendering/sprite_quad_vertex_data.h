@@ -1,11 +1,11 @@
 #pragma once
 
 #include "typedefs.h"
-#include "renderer/vertex_array.h"
-#include "renderer/vertex_buffer.h"
-#include "renderer/index_buffer.h"
+#include "rendering/vertex_array.h"
+#include "rendering/vertex_buffer.h"
+#include "rendering/index_buffer.h"
 
-struct SpriteRenderableVertexData
+struct SpriteQuadVertexData
 {
 	static float _vertices[];
 	static uint _indices[];
@@ -14,5 +14,5 @@ struct SpriteRenderableVertexData
 	VertexBuffer vertexBuffer;
 	IndexBuffer indexBuffer;
 
-	SpriteRenderableVertexData();
+	SpriteQuadVertexData();
 };
