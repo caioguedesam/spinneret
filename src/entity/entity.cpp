@@ -23,10 +23,10 @@ void Entity::addComponent(Component* component)
 	component->bindToEntity(this);
 }
 
-TransformComponent* Entity::getTransform() const
+TransformComponent* Entity::transform() const
 {
 	return getComponent<TransformComponent>();
 }
 
 void Entity::setTag(const std::string& tag) { _tag = tag; }
-std::string Entity::getTag() { return _tag; }
+std::string Entity::tag() { return _tag; }

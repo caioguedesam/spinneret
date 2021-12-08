@@ -12,5 +12,5 @@ public:
 	void bindToEntity(Entity* entity);
 	inline Entity* getEntity() const { return _entity; }
 
-	// TODO: Implement component Update (and OnLoad?)
+	virtual void update(double dt);
 };

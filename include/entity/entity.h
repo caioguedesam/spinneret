@@ -29,9 +29,10 @@ public:
 		}
 		return nullptr;
 	}
+	inline const std::unordered_map<size_t, Component*>& components() const { return _components; }
 
-	TransformComponent* getTransform() const;
+	TransformComponent* transform() const;
 
 	void setTag(const std::string& tag);
-	std::string getTag();
+	std::string tag();
 };

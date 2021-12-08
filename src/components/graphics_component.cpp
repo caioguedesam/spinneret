@@ -23,7 +23,7 @@ void GraphicsComponent::setShader(const std::string& shaderName)
 
 void GraphicsComponent::sendMVP(const glm::mat4& viewProjectionMatrix)
 {
-	TransformComponent* transform = _entity->getTransform();
+	TransformComponent* transform = _entity->transform();
 	glm::mat4 mvp = viewProjectionMatrix * transform->getModelMatrix();
 	_shader->setMat4("u_mvp", mvp);
 }

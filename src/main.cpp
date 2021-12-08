@@ -8,10 +8,12 @@
 #include "loading/resource_loader.h"
 #include "time/time_system.h"
 
+#include "entity/scene.h"
 #include "entity/entity.h"
 #include "components/transform_component.h"
 #include "components/camera_2d_component.h"
 #include "components/sprite_graphics_component.h"
+#include "components/test_component.h"
 
 #define TITLE "Spinneret"
 
@@ -60,12 +62,46 @@ void handleKeyPressEvent(SDL_Keysym& key, Camera2DComponent* camera) {
 }
 
 // TODO: not permanent event solution, only for testing purposes
-void pollEvents(Camera2DComponent* camera) {
+void pollEvents(Entity* camera) {
 	SDL_Event event;
 	while (SDL_PollEvent(&event)) {
 		switch (event.type) {
 		case SDL_KEYDOWN:
-			handleKeyPressEvent(event.key.keysym, camera);
+			handleKeyPressEvent(event.key.keysym, camera->getComponent<Camera2DComponent>());
+		}
+	}
+}
+
+// Temporary
+Entity* getNewCamera(RenderingSystem* renderingSystem)
+{
+	Entity* cameraObj = new Entity();
+	cameraObj->addComponent(new Camera2DComponent((float)width, (float)height, 0.1f, 100.f));
+	Camera2DComponent* camera2D = cameraObj->getComponent<Camera2DComponent>();
+	camera2D->moveTo(0.f, 0.f, -10.f);
+	renderingSystem->setActiveCamera(camera2D);
+	return cameraObj;
+}
+
+// Temporary
+Entity* getNewBox(RenderingSystem* renderingSystem)
+{
+	Entity* box = new Entity();
+	box->addComponent(new SpriteGraphicsComponent("base"));
+	SpriteGraphicsComponent* boxGraphics = box->getComponent<SpriteGraphicsComponent>();
+	boxGraphics->setTexture("container", 0);
+	boxGraphics->setTexture("awesome", 1);
+	renderingSystem->addDrawTarget(boxGraphics);
+	return box;
+}
+
+void update(Scene* scene, double dt)
+{
+	for (auto& entity : scene->entities())
+	{
+		for (auto& componentEntry : entity->components())
+		{
+			componentEntry.second->update(dt);
 		}
 	}
 }
@@ -89,34 +125,22 @@ int main(int argc, char* argv[]) {
 	TimeSystem::init();
 	RenderingSystem renderingSystem;
 
-	Entity cameraObj;
-	cameraObj.addComponent(new Camera2DComponent((float)width, (float)height, 0.1f, 100.f));
-	Camera2DComponent* camera2D = cameraObj.getComponent<Camera2DComponent>();
-	camera2D->moveTo(0.f, 0.f, -10.f);
-	renderingSystem.setActiveCamera(camera2D);
+	Scene gameScene;
 
-	Entity box;
-	box.addComponent(new SpriteGraphicsComponent("base"));
-	SpriteGraphicsComponent* boxGraphics = box.getComponent<SpriteGraphicsComponent>();
-	boxGraphics->setTexture("container", 0);
-	boxGraphics->setTexture("awesome", 1);
-	renderingSystem.addDrawTarget(boxGraphics);
+	Entity* cam = getNewCamera(&renderingSystem);
+	Entity* box1 = getNewBox(&renderingSystem);
+	Entity* box2 = getNewBox(&renderingSystem);
+	box1->addComponent(new TestComponent());
+	gameScene.addEntity(cam);
+	gameScene.addEntity(box1);
+	gameScene.addEntity(box2);
 
-	Entity box2;
-	box2.addComponent(new SpriteGraphicsComponent("base"));
-	SpriteGraphicsComponent* boxGraphics2 = box2.getComponent<SpriteGraphicsComponent>();
-	boxGraphics2->setTexture("container", 0);
-	boxGraphics2->setTexture("awesome", 1);
-	renderingSystem.addDrawTarget(boxGraphics2);
-
-	TransformComponent* boxTransform = box.getTransform();
-	TransformComponent* box2Transform = box2.getTransform();
 	while (!quit) {
 		TimeSystem::updateTime();
-		std::cout << "t: " << TimeSystem::getTime() << ", dt: " << TimeSystem::getDeltaTime() << std::endl;
-		boxTransform->setPosition(boxTransform->getPosition().x + 0.05f, 0.f, 0.f);
-		box2Transform->setPosition(box2Transform->getPosition().x + 0.025f, box2Transform->getPosition().y + 0.01f, 0.f);
-		pollEvents(camera2D);
+		pollEvents(cam);
+
+		update(&gameScene, TimeSystem::getDeltaTime());
+
 		render(display, renderingSystem);
 	}
 

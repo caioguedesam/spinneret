@@ -12,7 +12,7 @@ Camera2DComponent::Camera2DComponent(const float& width, const float& height, co
 
 void Camera2DComponent::moveTo(glm::vec3 newPosition)
 {
-	_entity->getTransform()->setPosition(newPosition);
+	_entity->transform()->setPosition(newPosition);
 }
 
 void Camera2DComponent::moveTo(float x, float y, float z)
@@ -22,17 +22,17 @@ void Camera2DComponent::moveTo(float x, float y, float z)
 
 void Camera2DComponent::rotateTo(float newAngle)
 {
-	_entity->getTransform()->setRotation(newAngle);
+	_entity->transform()->setRotation(newAngle);
 }
 
 glm::vec3 Camera2DComponent::getPosition() const
 {
-	return _entity->getTransform()->getPosition();
+	return _entity->transform()->getPosition();
 }
 
 float Camera2DComponent::getRotation() const
 {
-	return _entity->getTransform()->getRotation();
+	return _entity->transform()->getRotation();
 }
 
 float Camera2DComponent::getRotationRadians() const
@@ -43,7 +43,7 @@ float Camera2DComponent::getRotationRadians() const
 
 glm::mat4 Camera2DComponent::getViewMatrix() const
 {
-	return _entity->getTransform()->getModelMatrix();
+	return _entity->transform()->getModelMatrix();
 }
 
 glm::mat4 Camera2DComponent::getViewProjectionMatrix() const

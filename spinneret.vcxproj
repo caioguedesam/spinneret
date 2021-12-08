@@ -148,10 +148,12 @@
     <ClCompile Include="src\components\camera_2d_component.cpp" />
     <ClCompile Include="src\components\graphics_component.cpp" />
     <ClCompile Include="src\components\sprite_graphics_component.cpp" />
+    <ClCompile Include="src\components\test_component.cpp" />
     <ClCompile Include="src\display\display.cpp" />
     <ClCompile Include="src\components\component.cpp" />
     <ClCompile Include="src\components\transform_component.cpp" />
     <ClCompile Include="src\entity\entity.cpp" />
+    <ClCompile Include="src\entity\scene.cpp" />
     <ClCompile Include="src\glad.c" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\main_init.cpp" />
@@ -169,11 +171,13 @@
   <ItemGroup>
     <ClInclude Include="include\components\camera_2d_component.h" />
     <ClInclude Include="include\components\sprite_graphics_component.h" />
+    <ClInclude Include="include\components\test_component.h" />
     <ClInclude Include="include\display\display.h" />
     <ClInclude Include="include\components\component.h" />
     <ClInclude Include="include\components\graphics_component.h" />
     <ClInclude Include="include\components\transform_component.h" />
     <ClInclude Include="include\entity\entity.h" />
+    <ClInclude Include="include\entity\scene.h" />
     <ClInclude Include="include\gl_includes.h" />
     <ClInclude Include="include\logs.h" />
     <ClInclude Include="include\main_init.h" />
