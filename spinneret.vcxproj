@@ -155,13 +155,6 @@
     <ClCompile Include="src\glad.c" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\main_init.cpp" />
-    <ClCompile Include="src\renderer\index_buffer.cpp" />
-    <ClCompile Include="src\renderer\rendering_system.cpp" />
-    <ClCompile Include="src\renderer\shader.cpp" />
-    <ClCompile Include="src\renderer\stbi_implementation.cpp" />
-    <ClCompile Include="src\renderer\texture_2d.cpp" />
-    <ClCompile Include="src\renderer\vertex_array.cpp" />
-    <ClCompile Include="src\renderer\vertex_buffer.cpp" />
     <ClCompile Include="src\rendering\index_buffer.cpp" />
     <ClCompile Include="src\rendering\rendering_system.cpp" />
     <ClCompile Include="src\rendering\shader.cpp" />
