@@ -8,9 +8,9 @@ RenderingSystem::RenderingSystem()
 	SpriteGraphicsComponent::initQuadVertexData(&_spriteQuadVertexData);
 }
 
-void RenderingSystem::setCamera(Camera2DComponent& camera)
+void RenderingSystem::setActiveCamera(Camera2DComponent* camera)
 {
-	_camera = &camera;
+	_activeCamera = camera;
 }
 
 void RenderingSystem::addDrawTarget(GraphicsComponent* target)
@@ -31,7 +31,7 @@ void RenderingSystem::clear() const
 
 void RenderingSystem::draw() const
 {
-	glm::mat4 viewProjectionMatrix = _camera->getViewProjectionMatrix();
+	glm::mat4 viewProjectionMatrix = _activeCamera->getViewProjectionMatrix();
 	for (auto& target : _drawTargets) {
 		target->sendMVP(viewProjectionMatrix);
 		target->draw();

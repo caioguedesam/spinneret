@@ -10,14 +10,14 @@ class RenderingSystem {
 private:
 	std::set<GraphicsComponent*> _drawTargets;
 
-	Camera2DComponent* _camera;
+	Camera2DComponent* _activeCamera;
 
 	SpriteQuadVertexData _spriteQuadVertexData;
 public:
 	
 	RenderingSystem();
 
-	void setCamera(Camera2DComponent& camera);
+	void setActiveCamera(Camera2DComponent* camera);
 	void addDrawTarget(GraphicsComponent* target);
 	void removeDrawTarget(GraphicsComponent* target);
 

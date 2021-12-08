@@ -9,6 +9,7 @@
 
 #include "component_system/entities/entity.h"
 #include "component_system/components/transform_component.h"
+#include "component_system/components/camera_2d_component.h"
 #include "component_system/components/sprite_graphics_component.h"
 
 #define TITLE "Spinneret"
@@ -27,7 +28,7 @@ void render(Display& display, RenderingSystem& renderingSystem) {
 
 void handleKeyPressEvent(SDL_Keysym& key, Camera2DComponent* camera) {
 	glm::vec3 cameraPos = camera->getPosition();
-	float cameraAngle = camera->getAngle();
+	float cameraAngle = camera->getRotation();
 	const float cameraSpeed = 2.25f;
 	switch (key.sym) {
 	// Camera movement
@@ -85,9 +86,13 @@ int main(int argc, char* argv[]) {
 
 	ResourceLoader::init();
 	RenderingSystem renderingSystem;
-	Camera2DComponent camera((float)width, (float)height, 0.1f, 100.f);
-	camera.moveTo(0.f, 0.f, -10.f);
-	renderingSystem.setCamera(camera);
+
+	Entity cameraObj;
+	cameraObj.addComponent(std::type_index(typeid(Camera2DComponent)),
+		new Camera2DComponent(&cameraObj, (float)width, (float)height, 0.1f, 100.f));
+	Camera2DComponent* camera2D = cameraObj.getComponent<Camera2DComponent>();
+	camera2D->moveTo(0.f, 0.f, -10.f);
+	renderingSystem.setActiveCamera(camera2D);
 
 	Entity box;
 	box.addComponent(std::type_index(typeid(SpriteGraphicsComponent)), new SpriteGraphicsComponent(&box, "base"));
@@ -99,7 +104,7 @@ int main(int argc, char* argv[]) {
 	TransformComponent* boxTransform = box.getTransform();
 	while (isRunning) {
 		boxTransform->setPosition(boxTransform->getPosition().x + 0.05f, 0.f, 0.f);
-		pollEvents(&camera);
+		pollEvents(camera2D);
 		render(display, renderingSystem);
 	}
 
