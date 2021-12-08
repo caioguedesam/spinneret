@@ -30,14 +30,15 @@ Texture2D* ResourceCollection<Texture2D>::load(const std::string& resourcePath, 
 	_loadedResources.insert({ resourceKey, texture });
 	return get(resourceKey);
 }
-
-ResourceCollection<Shader> ResourceLoader::_shaders;
-ResourceCollection<Texture2D> ResourceLoader::_textures;
+//
+//ResourceCollection<Shader> ResourceLoader::_shaders;
+//ResourceCollection<Texture2D> ResourceLoader::_textures;
 
 void ResourceLoader::init()
 {
-	loadInitialTextures();
-	loadInitialShaders();
+	ResourceLoader& instance = getInstance();
+	instance.loadInitialTextures();
+	instance.loadInitialShaders();
 }
 
 void ResourceLoader::loadInitialShaders()
@@ -55,20 +56,20 @@ void ResourceLoader::loadInitialTextures()
 
 Shader* ResourceLoader::loadShader(const std::string& refPath, const std::string& shaderKey)
 {
-	return _shaders.load(refPath, shaderKey);
+	return getInstance()._shaders.load(refPath, shaderKey);
 }
 
 Shader* ResourceLoader::getShader(const std::string& shaderKey)
 {
-	return _shaders.get(shaderKey);
+	return getInstance()._shaders.get(shaderKey);
 }
 
 Texture2D* ResourceLoader::loadTexture2D(const std::string& texPath, const std::string& textureKey)
 {
-	return _textures.load(texPath, textureKey);
+	return getInstance()._textures.load(texPath, textureKey);
 }
 
 Texture2D* ResourceLoader::getTexture2D(const std::string& textureKey)
 {
-	return _textures.get(textureKey);
+	return getInstance()._textures.get(textureKey);
 }

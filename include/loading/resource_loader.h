@@ -46,13 +46,20 @@ T* ResourceCollection<T>::get(const std::string& resourceKey)
 class ResourceLoader
 {
 private:
-	static ResourceCollection<Shader> _shaders;
-	static ResourceCollection<Texture2D> _textures;
+	ResourceCollection<Shader> _shaders;
+	ResourceCollection<Texture2D> _textures;
+
+	static ResourceLoader& getInstance()
+	{
+		static ResourceLoader instance;
+		return instance;
+	}
+
 public:
 
 	static void init();
-	static void loadInitialShaders();
-	static void loadInitialTextures();
+	void loadInitialShaders();
+	void loadInitialTextures();
 
 	static Shader* loadShader(const std::string& refPath, const std::string& shaderKey);
 	static Shader* getShader(const std::string& shaderKey);
