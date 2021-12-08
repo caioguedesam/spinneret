@@ -1,4 +1,4 @@
-#include "camera/camera_2d.h"
+#include "component_system/components/camera_2d_component.h"
 #include "component_system/components/transform_component.h"
 #include "component_system/entities/entity.h"
 #include "gtc/matrix_transform.hpp"

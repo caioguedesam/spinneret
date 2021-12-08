@@ -25,7 +25,7 @@ void render(Display& display, RenderingSystem& renderingSystem) {
 	display.swapWindowBuffers();
 }
 
-void handleKeyPressEvent(SDL_Keysym& key, Camera2D* camera) {
+void handleKeyPressEvent(SDL_Keysym& key, Camera2DComponent* camera) {
 	glm::vec3 cameraPos = camera->getPosition();
 	float cameraAngle = camera->getAngle();
 	const float cameraSpeed = 2.25f;
@@ -58,7 +58,7 @@ void handleKeyPressEvent(SDL_Keysym& key, Camera2D* camera) {
 }
 
 // TODO: not permanent event solution, only for testing purposes
-void pollEvents(Camera2D* camera) {
+void pollEvents(Camera2DComponent* camera) {
 	SDL_Event event;
 	while (SDL_PollEvent(&event)) {
 		switch (event.type) {
@@ -85,7 +85,7 @@ int main(int argc, char* argv[]) {
 
 	ResourceLoader::init();
 	RenderingSystem renderingSystem;
-	Camera2D camera((float)width, (float)height, 0.1f, 100.f);
+	Camera2DComponent camera((float)width, (float)height, 0.1f, 100.f);
 	camera.moveTo(0.f, 0.f, -10.f);
 	renderingSystem.setCamera(camera);
 

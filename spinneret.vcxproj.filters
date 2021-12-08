@@ -27,7 +27,7 @@
     <ClCompile Include="src\loading\resource_loader.cpp">
       <Filter>Arquivos de Origem</Filter>
     </ClCompile>
-    <ClCompile Include="src\camera\camera_2d.cpp">
+    <ClCompile Include="src\component_system\components\camera_2d_component.cpp">
       <Filter>Arquivos de Origem</Filter>
     </ClCompile>
     <ClCompile Include="src\display\display.cpp">
@@ -92,7 +92,7 @@
     <ClInclude Include="include\logs.h">
       <Filter>Arquivos de Cabeçalho</Filter>
     </ClInclude>
-    <ClInclude Include="include\camera\camera_2d.h">
+    <ClInclude Include="include\component_system\components\camera_2d_component.h">
       <Filter>Arquivos de Cabeçalho</Filter>
     </ClInclude>
     <ClInclude Include="include\display\display.h">

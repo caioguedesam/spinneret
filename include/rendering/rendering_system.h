@@ -2,7 +2,7 @@
 
 #include <set>
 
-#include "camera/camera_2d.h"
+#include "component_system/components/camera_2d_component.h"
 #include "rendering/sprite_quad_vertex_data.h"
 #include "component_system/components/graphics_component.h"
 

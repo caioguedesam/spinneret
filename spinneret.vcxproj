@@ -145,7 +145,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="src\camera\camera_2d.cpp" />
+    <ClCompile Include="src\component_system\components\camera_2d_component.cpp" />
     <ClCompile Include="src\component_system\components\graphics_component.cpp" />
     <ClCompile Include="src\component_system\components\sprite_graphics_component.cpp" />
     <ClCompile Include="src\display\display.cpp" />
@@ -166,7 +166,7 @@
     <ClCompile Include="src\loading\resource_loader.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="include\camera\camera_2d.h" />
+    <ClInclude Include="include\component_system\components\camera_2d_component.h" />
     <ClInclude Include="include\component_system\components\sprite_graphics_component.h" />
     <ClInclude Include="include\display\display.h" />
     <ClInclude Include="include\component_system\components\component.h" />

@@ -8,7 +8,7 @@ RenderingSystem::RenderingSystem()
 	SpriteGraphicsComponent::initQuadVertexData(&_spriteQuadVertexData);
 }
 
-void RenderingSystem::setCamera(Camera2D& camera)
+void RenderingSystem::setCamera(Camera2DComponent& camera)
 {
 	_camera = &camera;
 }
