@@ -4,11 +4,13 @@
 #include "loading/resource_loader.h"
 #include "vec3.hpp"
 #include "gtc/matrix_transform.hpp"
+#include "rendering/rendering_system.h"
 
 GraphicsComponent::GraphicsComponent(const std::string& shaderName)
 	: _model(1.f)
 {
 	_shader = ResourceLoader::getShader(shaderName);
+	RenderingSystem::addDrawTarget(this);
 }
 
 void GraphicsComponent::setShader(const std::string& shaderName)

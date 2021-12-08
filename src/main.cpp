@@ -22,9 +22,9 @@ int height = 600;
 
 bool quit = false;
 
-void render(Display& display, RenderingSystem& renderingSystem) {
-	renderingSystem.clear();
-	renderingSystem.draw();
+void render(Display& display) {
+	RenderingSystem::clear();
+	RenderingSystem::draw();
 
 	display.swapWindowBuffers();
 }
@@ -73,25 +73,24 @@ void pollEvents(Entity* camera) {
 }
 
 // Temporary
-Entity* getNewCamera(RenderingSystem* renderingSystem)
+Entity* getNewCamera()
 {
 	Entity* cameraObj = new Entity();
 	cameraObj->addComponent(new Camera2DComponent((float)width, (float)height, 0.1f, 100.f));
 	Camera2DComponent* camera2D = cameraObj->getComponent<Camera2DComponent>();
 	camera2D->moveTo(0.f, 0.f, -10.f);
-	renderingSystem->setActiveCamera(camera2D);
+	camera2D->setAsActiveCamera();
 	return cameraObj;
 }
 
 // Temporary
-Entity* getNewBox(RenderingSystem* renderingSystem)
+Entity* getNewBox()
 {
 	Entity* box = new Entity();
 	box->addComponent(new SpriteGraphicsComponent("base"));
 	SpriteGraphicsComponent* boxGraphics = box->getComponent<SpriteGraphicsComponent>();
 	boxGraphics->setTexture("container", 0);
 	boxGraphics->setTexture("awesome", 1);
-	renderingSystem->addDrawTarget(boxGraphics);
 	return box;
 }
 
@@ -123,13 +122,13 @@ int main(int argc, char* argv[]) {
 
 	ResourceLoader::init();
 	TimeSystem::init();
-	RenderingSystem renderingSystem;
+	RenderingSystem::init();
 
 	Scene gameScene;
 
-	Entity* cam = getNewCamera(&renderingSystem);
-	Entity* box1 = getNewBox(&renderingSystem);
-	Entity* box2 = getNewBox(&renderingSystem);
+	Entity* cam = getNewCamera();
+	Entity* box1 = getNewBox();
+	Entity* box2 = getNewBox();
 	box1->addComponent(new TestComponent());
 	gameScene.addEntity(cam);
 	gameScene.addEntity(box1);
@@ -141,7 +140,7 @@ int main(int argc, char* argv[]) {
 
 		update(&gameScene, TimeSystem::getDeltaTime());
 
-		render(display, renderingSystem);
+		render(display);
 	}
 
 	SDL_Quit();

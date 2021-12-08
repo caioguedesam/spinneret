@@ -2,37 +2,39 @@
 #include "gl_includes.h"
 #include "components/sprite_graphics_component.h"
 
-RenderingSystem::RenderingSystem()
+void RenderingSystem::init()
 {
+	RenderingSystem& instance = getInstance();
 	glEnable(GL_DEPTH_TEST);
-	SpriteGraphicsComponent::initQuadVertexData(&_spriteQuadVertexData);
+	SpriteGraphicsComponent::initQuadVertexData(&(instance._spriteQuadVertexData));
 }
 
 void RenderingSystem::setActiveCamera(Camera2DComponent* camera)
 {
-	_activeCamera = camera;
+	getInstance()._activeCamera = camera;
 }
 
 void RenderingSystem::addDrawTarget(GraphicsComponent* target)
 {
-	_drawTargets.insert(target);
+	getInstance()._drawTargets.insert(target);
 }
 
 void RenderingSystem::removeDrawTarget(GraphicsComponent* target)
 {
-	_drawTargets.erase(target);
+	getInstance()._drawTargets.erase(target);
 }
 
-void RenderingSystem::clear() const
+void RenderingSystem::clear()
 {
 	glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 }
 
-void RenderingSystem::draw() const
+void RenderingSystem::draw()
 {
-	glm::mat4 viewProjectionMatrix = _activeCamera->getViewProjectionMatrix();
-	for (auto& target : _drawTargets) {
+	RenderingSystem& instance = getInstance();
+	glm::mat4 viewProjectionMatrix = instance._activeCamera->getViewProjectionMatrix();
+	for (auto& target : instance._drawTargets) {
 		target->sendMVP(viewProjectionMatrix);
 		target->draw();
 	}

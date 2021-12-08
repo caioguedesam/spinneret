@@ -20,6 +20,8 @@ private:
 public:
 	Camera2DComponent(const float& width, const float& height, const float& near, const float& far);
 
+	void setAsActiveCamera();
+
 	void moveTo(glm::vec3 newPosition);
 	void moveTo(float x, float y, float z);
 	void rotateTo(float newAngle);

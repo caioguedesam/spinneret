@@ -6,21 +6,27 @@
 #include "rendering/sprite_quad_vertex_data.h"
 #include "components/graphics_component.h"
 
-class RenderingSystem {
+class RenderingSystem
+{
 private:
 	std::set<GraphicsComponent*> _drawTargets;
-
 	Camera2DComponent* _activeCamera;
 
 	SpriteQuadVertexData _spriteQuadVertexData;
+
+	static RenderingSystem& getInstance()
+	{
+		static RenderingSystem instance;
+		return instance;
+	}
+
 public:
-	
-	RenderingSystem();
+	static void init();
 
-	void setActiveCamera(Camera2DComponent* camera);
-	void addDrawTarget(GraphicsComponent* target);
-	void removeDrawTarget(GraphicsComponent* target);
+	static void setActiveCamera(Camera2DComponent* camera);
+	static void addDrawTarget(GraphicsComponent* target);
+	static void removeDrawTarget(GraphicsComponent* target);
 
-	void clear() const;
-	void draw() const;
+	static void clear();
+	static void draw();
 };

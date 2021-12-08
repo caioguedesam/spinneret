@@ -3,11 +3,17 @@
 #include "entity/entity.h"
 #include "gtc/matrix_transform.hpp"
 #include "gtc/constants.hpp"
+#include "rendering/rendering_system.h"
 
 Camera2DComponent::Camera2DComponent(const float& width, const float& height, const float& near, const float& far)
 	: _width(width), _height(height), _near(near), _far(far)
 {
 	updateProjectionMatrix();
+}
+
+void Camera2DComponent::setAsActiveCamera()
+{
+	RenderingSystem::setActiveCamera(this);
 }
 
 void Camera2DComponent::moveTo(glm::vec3 newPosition)
