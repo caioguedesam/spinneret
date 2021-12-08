@@ -1,6 +1,6 @@
 #pragma once
 
-#include "component_system/components/component.h"
+#include "components/component.h"
 
 #include "vec3.hpp"
 #include "mat4x4.hpp"

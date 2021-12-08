@@ -27,25 +27,25 @@
     <ClCompile Include="src\loading\resource_loader.cpp">
       <Filter>Arquivos de Origem</Filter>
     </ClCompile>
-    <ClCompile Include="src\component_system\components\camera_2d_component.cpp">
+    <ClCompile Include="src\components\camera_2d_component.cpp">
       <Filter>Arquivos de Origem</Filter>
     </ClCompile>
     <ClCompile Include="src\display\display.cpp">
       <Filter>Arquivos de Origem</Filter>
     </ClCompile>
-    <ClCompile Include="src\component_system\entities\entity.cpp">
+    <ClCompile Include="src\entity\entity.cpp">
       <Filter>Arquivos de Origem</Filter>
     </ClCompile>
-    <ClCompile Include="src\component_system\components\component.cpp">
+    <ClCompile Include="src\components\component.cpp">
       <Filter>Arquivos de Origem</Filter>
     </ClCompile>
-    <ClCompile Include="src\component_system\components\transform_component.cpp">
+    <ClCompile Include="src\components\transform_component.cpp">
       <Filter>Arquivos de Origem</Filter>
     </ClCompile>
-    <ClCompile Include="src\component_system\components\graphics_component.cpp">
+    <ClCompile Include="src\components\graphics_component.cpp">
       <Filter>Arquivos de Origem</Filter>
     </ClCompile>
-    <ClCompile Include="src\component_system\components\sprite_graphics_component.cpp">
+    <ClCompile Include="src\components\sprite_graphics_component.cpp">
       <Filter>Arquivos de Origem</Filter>
     </ClCompile>
     <ClCompile Include="src\rendering\sprite_quad_vertex_data.cpp">
@@ -95,25 +95,25 @@
     <ClInclude Include="include\logs.h">
       <Filter>Arquivos de Cabeçalho</Filter>
     </ClInclude>
-    <ClInclude Include="include\component_system\components\camera_2d_component.h">
+    <ClInclude Include="include\components\camera_2d_component.h">
       <Filter>Arquivos de Cabeçalho</Filter>
     </ClInclude>
     <ClInclude Include="include\display\display.h">
       <Filter>Arquivos de Cabeçalho</Filter>
     </ClInclude>
-    <ClInclude Include="include\component_system\components\component.h">
+    <ClInclude Include="include\components\component.h">
       <Filter>Arquivos de Cabeçalho</Filter>
     </ClInclude>
-    <ClInclude Include="include\component_system\entities\entity.h">
+    <ClInclude Include="include\entity\entity.h">
       <Filter>Arquivos de Cabeçalho</Filter>
     </ClInclude>
-    <ClInclude Include="include\component_system\components\transform_component.h">
+    <ClInclude Include="include\components\transform_component.h">
       <Filter>Arquivos de Cabeçalho</Filter>
     </ClInclude>
-    <ClInclude Include="include\component_system\components\graphics_component.h">
+    <ClInclude Include="include\components\graphics_component.h">
       <Filter>Arquivos de Cabeçalho</Filter>
     </ClInclude>
-    <ClInclude Include="include\component_system\components\sprite_graphics_component.h">
+    <ClInclude Include="include\components\sprite_graphics_component.h">
       <Filter>Arquivos de Cabeçalho</Filter>
     </ClInclude>
     <ClInclude Include="include\rendering\index_buffer.h">

@@ -1,4 +1,4 @@
-#include "component_system/components/sprite_graphics_component.h"
+#include "components/sprite_graphics_component.h"
 #include "loading/resource_loader.h"
 
 SpriteQuadVertexData* SpriteGraphicsComponent::_quadVertexData;

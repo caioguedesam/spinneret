@@ -2,9 +2,9 @@
 
 #include <set>
 
-#include "component_system/components/camera_2d_component.h"
+#include "components/camera_2d_component.h"
 #include "rendering/sprite_quad_vertex_data.h"
-#include "component_system/components/graphics_component.h"
+#include "components/graphics_component.h"
 
 class RenderingSystem {
 private:

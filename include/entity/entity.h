@@ -4,7 +4,7 @@
 #include <unordered_map>
 #include <typeindex>
 
-#include "component_system/components/component.h"
+#include "components/component.h"
 
 class TransformComponent;
 

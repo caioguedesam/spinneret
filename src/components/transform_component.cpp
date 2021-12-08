@@ -1,4 +1,4 @@
-#include "component_system/components/transform_component.h"
+#include "components/transform_component.h"
 #include "gtc/matrix_transform.hpp"
 
 TransformComponent::TransformComponent()

@@ -145,13 +145,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="src\component_system\components\camera_2d_component.cpp" />
-    <ClCompile Include="src\component_system\components\graphics_component.cpp" />
-    <ClCompile Include="src\component_system\components\sprite_graphics_component.cpp" />
+    <ClCompile Include="src\components\camera_2d_component.cpp" />
+    <ClCompile Include="src\components\graphics_component.cpp" />
+    <ClCompile Include="src\components\sprite_graphics_component.cpp" />
     <ClCompile Include="src\display\display.cpp" />
-    <ClCompile Include="src\component_system\components\component.cpp" />
-    <ClCompile Include="src\component_system\components\transform_component.cpp" />
-    <ClCompile Include="src\component_system\entities\entity.cpp" />
+    <ClCompile Include="src\components\component.cpp" />
+    <ClCompile Include="src\components\transform_component.cpp" />
+    <ClCompile Include="src\entity\entity.cpp" />
     <ClCompile Include="src\glad.c" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\main_init.cpp" />
@@ -167,13 +167,13 @@
     <ClCompile Include="src\time\time_system.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="include\component_system\components\camera_2d_component.h" />
-    <ClInclude Include="include\component_system\components\sprite_graphics_component.h" />
+    <ClInclude Include="include\components\camera_2d_component.h" />
+    <ClInclude Include="include\components\sprite_graphics_component.h" />
     <ClInclude Include="include\display\display.h" />
-    <ClInclude Include="include\component_system\components\component.h" />
-    <ClInclude Include="include\component_system\components\graphics_component.h" />
-    <ClInclude Include="include\component_system\components\transform_component.h" />
-    <ClInclude Include="include\component_system\entities\entity.h" />
+    <ClInclude Include="include\components\component.h" />
+    <ClInclude Include="include\components\graphics_component.h" />
+    <ClInclude Include="include\components\transform_component.h" />
+    <ClInclude Include="include\entity\entity.h" />
     <ClInclude Include="include\gl_includes.h" />
     <ClInclude Include="include\logs.h" />
     <ClInclude Include="include\main_init.h" />

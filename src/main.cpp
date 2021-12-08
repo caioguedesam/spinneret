@@ -8,10 +8,10 @@
 #include "loading/resource_loader.h"
 #include "time/time_system.h"
 
-#include "component_system/entities/entity.h"
-#include "component_system/components/transform_component.h"
-#include "component_system/components/camera_2d_component.h"
-#include "component_system/components/sprite_graphics_component.h"
+#include "entity/entity.h"
+#include "components/transform_component.h"
+#include "components/camera_2d_component.h"
+#include "components/sprite_graphics_component.h"
 
 #define TITLE "Spinneret"
 

@@ -1,4 +1,4 @@
-#include "component_system/components/component.h"
+#include "components/component.h"
 
 void Component::bindToEntity(Entity* entity)
 {

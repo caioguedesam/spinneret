@@ -1,6 +1,6 @@
 #pragma once
 
-#include "component_system/components/component.h"
+#include "components/component.h"
 #include "rendering/shader.h"
 
 #include "mat4x4.hpp"

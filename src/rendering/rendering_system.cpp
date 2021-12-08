@@ -1,6 +1,6 @@
 #include "rendering/rendering_system.h"
 #include "gl_includes.h"
-#include "component_system/components/sprite_graphics_component.h"
+#include "components/sprite_graphics_component.h"
 
 RenderingSystem::RenderingSystem()
 {
