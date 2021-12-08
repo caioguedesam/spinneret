@@ -14,7 +14,7 @@ private:
 	float _rotation;			// Rotation in 2D (in degrees)
 	// TODO: add scale
 public:
-	TransformComponent(Entity* entity);
+	TransformComponent();
 
 	void updateModel();
 

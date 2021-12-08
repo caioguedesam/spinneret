@@ -4,8 +4,8 @@
 #include "gtc/matrix_transform.hpp"
 #include "gtc/constants.hpp"
 
-Camera2DComponent::Camera2DComponent(Entity* entity, const float& width, const float& height, const float& near, const float& far)
-	: Component(entity), _width(width), _height(height), _near(near), _far(far)
+Camera2DComponent::Camera2DComponent(const float& width, const float& height, const float& near, const float& far)
+	: _width(width), _height(height), _near(near), _far(far)
 {
 	updateProjectionMatrix();
 }

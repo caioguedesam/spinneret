@@ -88,21 +88,20 @@ int main(int argc, char* argv[]) {
 	RenderingSystem renderingSystem;
 
 	Entity cameraObj;
-	cameraObj.addComponent(std::type_index(typeid(Camera2DComponent)),
-		new Camera2DComponent(&cameraObj, (float)width, (float)height, 0.1f, 100.f));
+	cameraObj.addComponent(new Camera2DComponent((float)width, (float)height, 0.1f, 100.f));
 	Camera2DComponent* camera2D = cameraObj.getComponent<Camera2DComponent>();
 	camera2D->moveTo(0.f, 0.f, -10.f);
 	renderingSystem.setActiveCamera(camera2D);
 
 	Entity box;
-	box.addComponent(std::type_index(typeid(SpriteGraphicsComponent)), new SpriteGraphicsComponent(&box, "base"));
+	box.addComponent(new SpriteGraphicsComponent("base"));
 	SpriteGraphicsComponent* boxGraphics = box.getComponent<SpriteGraphicsComponent>();
 	boxGraphics->setTexture("container", 0);
 	boxGraphics->setTexture("awesome", 1);
 	renderingSystem.addDrawTarget(boxGraphics);
 
 	Entity box2;
-	box2.addComponent(std::type_index(typeid(SpriteGraphicsComponent)), new SpriteGraphicsComponent(&box2, "base"));
+	box2.addComponent(new SpriteGraphicsComponent("base"));
 	SpriteGraphicsComponent* boxGraphics2 = box2.getComponent<SpriteGraphicsComponent>();
 	boxGraphics2->setTexture("container", 0);
 	boxGraphics2->setTexture("awesome", 1);

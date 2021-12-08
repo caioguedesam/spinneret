@@ -5,8 +5,8 @@
 #include "vec3.hpp"
 #include "gtc/matrix_transform.hpp"
 
-GraphicsComponent::GraphicsComponent(Entity* entity, const std::string& shaderName) : Component(entity),
-	_model(1.f) 
+GraphicsComponent::GraphicsComponent(const std::string& shaderName)
+	: _model(1.f)
 {
 	_shader = ResourceLoader::getShader(shaderName);
 }

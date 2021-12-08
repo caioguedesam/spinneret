@@ -13,8 +13,7 @@ private:
 protected:
 	Shader* _shader;
 public:
-	// TODO: Subscribe GraphicsComponent to RenderingSystem
-	GraphicsComponent(Entity* entity, const std::string& shaderName);
+	GraphicsComponent(const std::string& shaderName);
 
 	void setShader(const std::string& shaderName);
 	void sendMVP(const glm::mat4& viewProjectionMatrix);

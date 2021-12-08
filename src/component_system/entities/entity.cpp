@@ -1,9 +1,11 @@
 #include "component_system/entities/entity.h"
 #include "component_system/components/transform_component.h"
+#include <iostream>
+#include <string>
 
 Entity::Entity()
 {
-	addComponent(std::type_index(typeid(TransformComponent)), new TransformComponent(this));
+	addComponent(new TransformComponent());
 }
 
 Entity::~Entity()
@@ -14,9 +16,11 @@ Entity::~Entity()
 	}
 }
 
-void Entity::addComponent(std::type_index type, Component* component)
+void Entity::addComponent(Component* component)
 {
-	_components[type] = component;
+	size_t hashcode = std::type_index(typeid(*component)).hash_code();
+	_components[hashcode] = component;
+	component->bindToEntity(this);
 }
 
 TransformComponent* Entity::getTransform() const

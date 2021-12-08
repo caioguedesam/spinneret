@@ -14,7 +14,7 @@ private:
 	static SpriteQuadVertexData* _quadVertexData;
 	std::map<uint, Texture2D*> _textures;
 public:
-	SpriteGraphicsComponent(Entity* entity, const std::string& shaderName);
+	SpriteGraphicsComponent(const std::string& shaderName);
 
 	static void initQuadVertexData(SpriteQuadVertexData* vertexData);
 	

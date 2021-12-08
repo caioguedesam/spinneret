@@ -3,8 +3,8 @@
 
 SpriteQuadVertexData* SpriteGraphicsComponent::_quadVertexData;
 
-SpriteGraphicsComponent::SpriteGraphicsComponent(Entity* entity, const std::string& shaderName)
-	: GraphicsComponent(entity, shaderName) {}
+SpriteGraphicsComponent::SpriteGraphicsComponent(const std::string& shaderName)
+	: GraphicsComponent(shaderName) {}
 
 void SpriteGraphicsComponent::initQuadVertexData(SpriteQuadVertexData* vertexData)
 {

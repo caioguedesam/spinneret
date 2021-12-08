@@ -1,6 +1,6 @@
 #include "component_system/components/component.h"
 
-Component::Component(Entity* entity)
+void Component::bindToEntity(Entity* entity)
 {
 	_entity = entity;
 }
