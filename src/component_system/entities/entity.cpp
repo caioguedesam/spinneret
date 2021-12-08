@@ -19,5 +19,10 @@ void Entity::addComponent(std::type_index type, Component* component)
 	_components[type] = component;
 }
 
+TransformComponent* Entity::getTransform() const
+{
+	return getComponent<TransformComponent>();
+}
+
 void Entity::setTag(const std::string& tag) { _tag = tag; }
 std::string Entity::getTag() { return _tag; }

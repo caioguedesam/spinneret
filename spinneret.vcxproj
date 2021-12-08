@@ -146,7 +146,12 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="src\camera\camera_2d.cpp" />
+    <ClCompile Include="src\component_system\components\graphics_component.cpp" />
+    <ClCompile Include="src\component_system\components\sprite_graphics_component.cpp" />
     <ClCompile Include="src\display\display.cpp" />
+    <ClCompile Include="src\component_system\components\component.cpp" />
+    <ClCompile Include="src\component_system\components\transform_component.cpp" />
+    <ClCompile Include="src\component_system\entities\entity.cpp" />
     <ClCompile Include="src\glad.c" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\main_init.cpp" />
@@ -165,7 +170,12 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\camera\camera_2d.h" />
+    <ClInclude Include="include\component_system\components\sprite_graphics_component.h" />
     <ClInclude Include="include\display\display.h" />
+    <ClInclude Include="include\component_system\components\component.h" />
+    <ClInclude Include="include\component_system\components\graphics_component.h" />
+    <ClInclude Include="include\component_system\components\transform_component.h" />
+    <ClInclude Include="include\component_system\entities\entity.h" />
     <ClInclude Include="include\gl_includes.h" />
     <ClInclude Include="include\logs.h" />
     <ClInclude Include="include\main_init.h" />

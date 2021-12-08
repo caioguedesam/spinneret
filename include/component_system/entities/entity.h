@@ -5,7 +5,8 @@
 #include <typeindex>
 
 #include "component_system/components/component.h"
-#include "component_system/components/transform_component.h"
+
+class TransformComponent;
 
 class Entity
 {
@@ -28,7 +29,7 @@ public:
 		return nullptr;
 	}
 
-	TransformComponent* getTransform() const { return getComponent<TransformComponent>(); }
+	TransformComponent* getTransform() const;
 
 	void setTag(const std::string& tag);
 	std::string getTag();

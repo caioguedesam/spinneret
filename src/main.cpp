@@ -8,6 +8,9 @@
 #include "renderer/renderable/sprite_renderable.h"
 #include "resource_loader/resource_loader.h"
 
+#include "component_system/entities/entity.h"
+#include "component_system/components/sprite_graphics_component.h"
+
 #define TITLE "Spinneret"
 
 int width = 800;
@@ -86,10 +89,17 @@ int main(int argc, char* argv[]) {
 	camera.moveTo(0.f, 0.f, -10.f);
 	renderer.setCamera(camera);
 
-	SpriteRenderable spriteRenderable("base");
+	/*SpriteRenderable spriteRenderable("base");
 	spriteRenderable.setTexture("container", 0);
 	spriteRenderable.setTexture("awesome", 1);
-	renderer.addRenderable(spriteRenderable);
+	renderer.addRenderable(spriteRenderable);*/
+
+	Entity box;
+	box.addComponent(std::type_index(typeid(SpriteGraphicsComponent)), new SpriteGraphicsComponent(&box, "base"));
+	SpriteGraphicsComponent* boxGraphics = box.getComponent<SpriteGraphicsComponent>();
+	boxGraphics->setTexture("container", 0);
+	boxGraphics->setTexture("awesome", 1);
+	renderer.addDrawTarget(boxGraphics);
 
 	while (isRunning) {
 		pollEvents(&camera);

@@ -1,13 +1,11 @@
 #include "renderer/renderer.h"
 #include "gl_includes.h"
-#include "typedefs.h"
-#include "gtc/matrix_transform.hpp"
-#include "renderer/renderable/sprite_renderable.h"
+#include "component_system/components/sprite_graphics_component.h"
 
 Renderer::Renderer()
 {
 	glEnable(GL_DEPTH_TEST);
-	SpriteRenderable::init(&_spriteRenderableVertexData);
+	SpriteGraphicsComponent::initQuadVertexData(&_spriteQuadVertexData);
 }
 
 void Renderer::setCamera(Camera2D& camera)
@@ -15,15 +13,14 @@ void Renderer::setCamera(Camera2D& camera)
 	_camera = &camera;
 }
 
-void Renderer::addRenderable(Renderable& renderable)
+void Renderer::addDrawTarget(GraphicsComponent* target)
 {
-	_renderables.insert(&renderable);
-	renderable.bind(this);
+	_drawTargets.insert(target);
 }
 
-void Renderer::removeRenderable(Renderable& renderable)
+void Renderer::removeDrawTarget(GraphicsComponent* target)
 {
-	_renderables.erase(&renderable);
+	_drawTargets.erase(target);
 }
 
 void Renderer::clear() const
@@ -35,8 +32,8 @@ void Renderer::clear() const
 void Renderer::draw() const
 {
 	glm::mat4 viewProjectionMatrix = _camera->getViewProjectionMatrix();
-	for (auto& renderable : _renderables) {
-		renderable->sendMVPUniform(viewProjectionMatrix);
-		renderable->draw();
+	for (auto& target : _drawTargets) {
+		target->sendMVP(viewProjectionMatrix);
+		target->draw();
 	}
 }
