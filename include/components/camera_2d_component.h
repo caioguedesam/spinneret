@@ -4,6 +4,7 @@
 
 #include "vec3.hpp"
 #include "mat4x4.hpp"
+#include <SDL.h>
 
 class Camera2DComponent : public Component
 {
@@ -33,4 +34,6 @@ public:
 	glm::mat4 getViewMatrix() const;
 	inline glm::mat4 getProjectionMatrix() const{ return _projMatrix; }
 	glm::mat4 getViewProjectionMatrix() const;
+
+	void processInput(SDL_Event inputEvent);
 };

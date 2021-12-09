@@ -1,13 +1,13 @@
 #include "event/event_system.h"
 
-void EventSystem::addCallback(Uint32 type, void(*callback)())
+void EventSystem::addCallback(Uint32 type, std::function<void(SDL_Event)> callback)
 {
 	getInstance()._callbacks[type].push_back(callback);
 }
 
-void EventSystem::removeCallback(Uint32 type, void(*callback)())
+void EventSystem::removeCallback(Uint32 type, std::function<void(SDL_Event)> callback)
 {
-	getInstance()._callbacks[type].remove(callback);
+	// TODO
 }
 
 void EventSystem::pollEvents()
@@ -17,10 +17,10 @@ void EventSystem::pollEvents()
 	while (SDL_PollEvent(&event))
 	{
 		Uint32 type = event.type;
-		std::list<void(*)()> callbacks = instance._callbacks[type];
+		std::list<std::function<void(SDL_Event)>> callbacks = instance._callbacks[type];
 		for (auto& callback : callbacks)
 		{
-			callback();
+			callback(event);
 		}
 	}
 }

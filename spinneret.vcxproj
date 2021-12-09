@@ -154,6 +154,7 @@
     <ClCompile Include="src\components\transform_component.cpp" />
     <ClCompile Include="src\entity\entity.cpp" />
     <ClCompile Include="src\entity\scene.cpp" />
+    <ClCompile Include="src\event\event_system.cpp" />
     <ClCompile Include="src\glad.c" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\main_init.cpp" />
@@ -178,6 +179,7 @@
     <ClInclude Include="include\components\transform_component.h" />
     <ClInclude Include="include\entity\entity.h" />
     <ClInclude Include="include\entity\scene.h" />
+    <ClInclude Include="include\event\event_system.h" />
     <ClInclude Include="include\gl_includes.h" />
     <ClInclude Include="include\logs.h" />
     <ClInclude Include="include\main_init.h" />

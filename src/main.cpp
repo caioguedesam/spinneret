@@ -7,6 +7,7 @@
 #include "rendering/rendering_system.h"
 #include "loading/resource_loader.h"
 #include "time/time_system.h"
+#include "event/event_system.h"
 
 #include "entity/scene.h"
 #include "entity/entity.h"
@@ -27,49 +28,6 @@ void render(Display& display) {
 	RenderingSystem::draw();
 
 	display.swapWindowBuffers();
-}
-
-void handleKeyPressEvent(SDL_Keysym& key, Camera2DComponent* camera) {
-	glm::vec3 cameraPos = camera->getPosition();
-	float cameraAngle = camera->getRotation();
-	const float cameraSpeed = 2.25f;
-	switch (key.sym) {
-	// Camera movement
-	case SDLK_UP:
-		camera->moveTo(cameraPos + cameraSpeed * glm::vec3(0.f, 1.f, 0.f));
-		break;
-	case SDLK_DOWN:
-		camera->moveTo(cameraPos - cameraSpeed * glm::vec3(0.f, 1.f, 0.f));
-		break;
-	case SDLK_LEFT:
-		camera->moveTo(cameraPos - cameraSpeed * glm::vec3(1.f, 0.f, 0.f));
-		break;
-	case SDLK_RIGHT:
-		camera->moveTo(cameraPos + cameraSpeed * glm::vec3(1.f, 0.f, 0.f));
-		break;
-	// Camera rotation
-	case SDLK_a:
-		camera->rotateTo(cameraAngle - 0.5f);
-		break;
-	case SDLK_d:
-		camera->rotateTo(cameraAngle + 0.5f);
-		break;
-	// Quit application
-	case SDLK_ESCAPE:
-		quit = true;
-		break;
-	}
-}
-
-// TODO: not permanent event solution, only for testing purposes
-void pollEvents(Entity* camera) {
-	SDL_Event event;
-	while (SDL_PollEvent(&event)) {
-		switch (event.type) {
-		case SDL_KEYDOWN:
-			handleKeyPressEvent(event.key.keysym, camera->getComponent<Camera2DComponent>());
-		}
-	}
 }
 
 // Temporary
@@ -105,6 +63,13 @@ void update(Scene* scene, double dt)
 	}
 }
 
+void getQuitInput(SDL_Event inputEvent)
+{
+	SDL_Keysym key = inputEvent.key.keysym;
+	if(key.sym == SDLK_ESCAPE)
+		quit = true;
+}
+
 int main(int argc, char* argv[]) {
 	if (!initSDL()) {
 		return -1;
@@ -123,6 +88,7 @@ int main(int argc, char* argv[]) {
 	ResourceLoader::init();
 	TimeSystem::init();
 	RenderingSystem::init();
+	EventSystem::addCallback(SDL_KEYDOWN, std::bind(&getQuitInput, std::placeholders::_1));
 
 	Scene gameScene;
 
@@ -136,8 +102,9 @@ int main(int argc, char* argv[]) {
 
 	while (!quit) {
 		TimeSystem::updateTime();
-		pollEvents(cam);
+		EventSystem::pollEvents();
 
+		// Updating with variable dt, maybe improve later
 		update(&gameScene, TimeSystem::getDeltaTime());
 
 		render(display);
