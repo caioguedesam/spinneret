@@ -10,8 +10,6 @@ private:
 public:
 	TestComponent();
 
-	static int testEventCode;
-
 	void update(double dt) override;
 
 	void raiseTestEvent(SDL_Event event);

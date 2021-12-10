@@ -10,7 +10,7 @@ Camera2DComponent::Camera2DComponent(const float& width, const float& height, co
 	: _width(width), _height(height), _near(near), _far(far)
 {
 	updateProjectionMatrix();
-	EventSystem::addCallback(SDL_KEYDOWN, std::bind(&Camera2DComponent::processInput, this, std::placeholders::_1));
+	EventSystem::addCallback(SDL_KEYDOWN, this, &Camera2DComponent::processInput);
 }
 
 void Camera2DComponent::setAsActiveCamera()

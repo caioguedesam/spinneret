@@ -21,10 +21,16 @@ private:
 public:
 	static void init();
 
-	static void addCallback(Uint32 type, std::function<void(SDL_Event)> callback);
-	static void removeCallback(Uint32 type, std::function<void(SDL_Event)> callback);
 	static void pollEvents();
 	static void raiseEvent(const Sint32& eventCode, void* eventData);
+
+	static void addCallback(Uint32 type, void (*callback)(SDL_Event));
+	template<typename T>
+	static void addCallback(Uint32 type, T* caller, void (T::*callback)(SDL_Event))
+	{
+		auto bindCallback = std::bind(callback, caller, std::placeholders::_1);
+		getInstance()._callbacks[type].push_back(bindCallback);
+	}
 
 	inline static const Uint32 getGameEventType() { return _gameEventType; }
 };

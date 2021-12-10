@@ -3,17 +3,16 @@
 #include "components/transform_component.h"
 #include "time/time_system.h"
 #include "event/event_system.h"
+#include "event/event_codes.h"
 #include "vec3.hpp"
 #include <math.h>
 #include <iostream>
 
-int TestComponent::testEventCode = 1;
-
 TestComponent::TestComponent()
 	: _respondCount(0)
 {
-	EventSystem::addCallback(SDL_KEYDOWN, std::bind(&TestComponent::raiseTestEvent, this, std::placeholders::_1));
-	EventSystem::addCallback(EventSystem::getGameEventType(), std::bind(&TestComponent::respondToTestEvent, this, std::placeholders::_1));
+	EventSystem::addCallback(SDL_KEYDOWN, this, &TestComponent::raiseTestEvent);
+	EventSystem::addCallback(EventSystem::getGameEventType(), this, &TestComponent::respondToTestEvent);
 }
 
 void TestComponent::update(double dt)
@@ -32,13 +31,13 @@ void TestComponent::raiseTestEvent(SDL_Event event)
 	if (key.sym == SDLK_p)
 	{
 		std::cout << "Raising test event..." << std::endl;
-		EventSystem::raiseEvent(testEventCode, (void*)"Hello!");
+		EventSystem::raiseEvent(EVENT_TEST, (void*)"Hello!");
 	}
 }
 
 void TestComponent::respondToTestEvent(SDL_Event event)
 {
-	if (event.user.code != testEventCode) return;
+	if (event.user.code != EVENT_TEST) return;
 	_respondCount++;
 	std::cout << "Responded to event " << _respondCount << " times. Custom data: " << static_cast<const char*>(event.user.data1) << std::endl;
 }

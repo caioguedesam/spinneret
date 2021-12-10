@@ -179,6 +179,7 @@
     <ClInclude Include="include\components\transform_component.h" />
     <ClInclude Include="include\entity\entity.h" />
     <ClInclude Include="include\entity\scene.h" />
+    <ClInclude Include="include\event\event_codes.h" />
     <ClInclude Include="include\event\event_system.h" />
     <ClInclude Include="include\gl_includes.h" />
     <ClInclude Include="include\logs.h" />

@@ -10,16 +10,6 @@ void EventSystem::init()
 		logError("EVENT_SYSTEM", "Couldn't initialize custom game event type in Event System.");
 }
 
-void EventSystem::addCallback(Uint32 type, std::function<void(SDL_Event)> callback)
-{
-	getInstance()._callbacks[type].push_back(callback);
-}
-
-void EventSystem::removeCallback(Uint32 type, std::function<void(SDL_Event)> callback)
-{
-	// TODO
-}
-
 void EventSystem::pollEvents()
 {
 	EventSystem& instance = getInstance();
@@ -43,4 +33,10 @@ void EventSystem::raiseEvent(const Sint32& eventCode, void* eventData)
 	event.user.code = eventCode;
 	event.user.data1 = eventData;
 	SDL_PushEvent(&event);
+}
+
+void EventSystem::addCallback(Uint32 type, void(*callback)(SDL_Event))
+{
+	auto bindCallback = std::bind(callback, std::placeholders::_1);
+	getInstance()._callbacks[type].push_back(bindCallback);
 }
