@@ -1,4 +1,14 @@
 #include "event/event_system.h"
+#include "logs.h"
+
+Uint32 EventSystem::_gameEventType;
+
+void EventSystem::init()
+{
+	_gameEventType = SDL_RegisterEvents(1);
+	if (_gameEventType == ((Uint32)-1))
+		logError("EVENT_SYSTEM", "Couldn't initialize custom game event type in Event System.");
+}
 
 void EventSystem::addCallback(Uint32 type, std::function<void(SDL_Event)> callback)
 {
@@ -23,4 +33,14 @@ void EventSystem::pollEvents()
 			callback(event);
 		}
 	}
+}
+
+void EventSystem::raiseEvent(const Sint32& eventCode, void* eventData)
+{
+	SDL_Event event;
+	SDL_memset(&event, 0, sizeof(event));
+	event.type = _gameEventType;
+	event.user.code = eventCode;
+	event.user.data1 = eventData;
+	SDL_PushEvent(&event);
 }

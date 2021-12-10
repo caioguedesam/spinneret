@@ -88,6 +88,7 @@ int main(int argc, char* argv[]) {
 	ResourceLoader::init();
 	TimeSystem::init();
 	RenderingSystem::init();
+	EventSystem::init();
 	EventSystem::addCallback(SDL_KEYDOWN, std::bind(&getQuitInput, std::placeholders::_1));
 
 	Scene gameScene;
